@@ -22,13 +22,11 @@ import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Usuario;
 import modeloNegocio.Empresa;
-import net.bytebuddy.asm.Advice.This;
 import modeloDatos.Vehiculo;
 import modeloDatos.Auto;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Viaje;
 import modeloDatos.Chofer;
-import static org.mockito.Mockito.*;
 
 public class AgregarPedido {
 
@@ -64,13 +62,6 @@ public class AgregarPedido {
 
 	@Test
 	public void test_agregar_pedido() {
-		//HashMap<String,Cliente> clientes = mock(HashMap.class);
-		//when(clientes.get(this.nombre_usuario)).thenReturn(this.cliente);
-		//Empresa empresa_mockeada = mock(Empresa.class);
-		//when(empresa_mockeada.getUsuarioLogeado()).thenReturn(this.cliente);
-		//Empresa.getInstance().setUsuarioLogeado(this.cliente);
-		//assertEquals(this.cliente,Empresa.getInstance().getUsuarioLogeado());
-		
 		try { //agrego el vehiculo disponible
 			Empresa.getInstance().agregarVehiculo(auto);
 		} catch (VehiculoRepetidoException e) {
