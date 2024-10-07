@@ -10,8 +10,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import excepciones.ChoferNoDisponibleException;
+import excepciones.ChoferRepetidoException;
+import excepciones.ClienteConPedidoPendienteException;
 import excepciones.ClienteConViajePendienteException;
+import excepciones.ClienteNoExisteException;
 import excepciones.PedidoInexistenteException;
+import excepciones.SinVehiculoParaPedidoException;
 import excepciones.UsuarioYaExisteException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
@@ -69,8 +73,12 @@ public class CrearViaje {
 	@Test
 	public void test_creo_viaje() {
 		try {
+			assertEquals(1,Empresa.getInstance().getVehiculosDesocupados().size());
+			assertEquals(1,Empresa.getInstance().getChoferesDesocupados().size());
 			Empresa.getInstance().crearViaje(this.pedido, this.chofer, this.vehiculo);
 			assertNotNull(Empresa.getInstance().getViajeDeCliente(cliente_logeado));
+			assertEquals(0,Empresa.getInstance().getVehiculosDesocupados().size());
+			assertEquals(0,Empresa.getInstance().getChoferesDesocupados().size());
 		} catch (PedidoInexistenteException e) {
 			fail("el pedido no esta en el hashmap de pedidos");
 		} catch (ChoferNoDisponibleException e) {
@@ -106,6 +114,7 @@ public class CrearViaje {
 	@Test
 	public void test_creo_viaje_con_chofer_inexistente() {
 		Empresa.getInstance().getChoferes().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
 		try {
 			Empresa.getInstance().crearViaje(this.pedido, this.chofer, this.vehiculo);
 			fail("crea el viaje con chofer inexistente");
@@ -125,6 +134,7 @@ public class CrearViaje {
 	@Test
 	public void test_creo_viaje_con_vehiculo_inexistente() {
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 		try {
 			Empresa.getInstance().crearViaje(this.pedido, this.chofer, this.vehiculo);
 			fail("crea el viaje con vehiculo inexistente");
@@ -170,9 +180,11 @@ public class CrearViaje {
 	@Test
 	public void test_cliente_realizando_viaje() {
 		crea_viaje_anterior();
+		
 		try {
+			//Empresa.getInstance().agregarPedido(this.pedido);
 			Empresa.getInstance().crearViaje(this.pedido, this.chofer, this.vehiculo);
-			fail("crea el viaje con vehiculo que no cumple con los requisitos");
+			fail("crea viaje con cliente actualmente en viaje");
 		} catch (PedidoInexistenteException e) {
 			fail("el pedido es inexistente");
 		} catch (ChoferNoDisponibleException e) {
@@ -191,9 +203,16 @@ public class CrearViaje {
 		Pedido pedido_test = new Pedido(this.cliente_logeado,2,false,true,5,"ZONA_STANDARD");
 		Chofer chofer = new ChoferPermanente("213213","marcelo hanson",2020,4);
 		Vehiculo auto = new Auto("pda123",3,true);
-		Viaje viaje = new Viaje(pedido_test,chofer,auto);
+		
+		Empresa.getInstance().getPedidos().clear();
+		HashMap<Cliente,Pedido> pedidos = new HashMap<Cliente,Pedido>();
+		pedidos.put(cliente_logeado, pedido_test);
+		pedidos.put(cliente_logeado, this.pedido);
+		Empresa.getInstance().setPedidos(pedidos);
+		
+		/*Viaje viaje = new Viaje(pedido_test,chofer,auto);
 		viajes_iniciados.put(this.cliente_logeado, viaje);
-		Empresa.getInstance().setViajesIniciados(viajes_iniciados);
+		Empresa.getInstance().setViajesIniciados(viajes_iniciados);*/
 	}
 	
 	@After
@@ -201,6 +220,8 @@ public class CrearViaje {
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
 		Empresa.getInstance().getPedidos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
 	}
 
 }

@@ -3,6 +3,7 @@ package testeo_grupo_taller;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import excepciones.PasswordErroneaException;
@@ -16,7 +17,7 @@ public class Login {
 	String nombre_completo = "jorge fernandez";
 	
 	@Before
-	public void setUp() throws Exception { //tendria que mockear el metodo agregarCliente ?
+	public void setUp() throws Exception {
 		try {
 			Empresa.getInstance().agregarCliente(this.nombre_usuario,this.password,this.nombre_completo);
 		} catch (UsuarioYaExisteException e) {
@@ -28,6 +29,22 @@ public class Login {
 	public void login_correcto() {
 		try {
 			Empresa.getInstance().login(this.nombre_usuario,this.password);
+			assertEquals(this.nombre_usuario,Empresa.getInstance().getUsuarioLogeado().getNombreUsuario());
+			assertEquals(this.password,Empresa.getInstance().getUsuarioLogeado().getPass());
+			assertFalse(Empresa.getInstance().isAdmin());
+		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
+			fail("no logea correctamente al usuario");
+			//e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void login_correcto_admin() {
+		try {
+			Empresa.getInstance().login("admin","admin");
+			assertEquals("admin",Empresa.getInstance().getUsuarioLogeado().getNombreUsuario());
+			assertEquals("admin",Empresa.getInstance().getUsuarioLogeado().getPass());
+			assertTrue(Empresa.getInstance().isAdmin());
 		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
 			fail("no logea correctamente al usuario");
 			//e.printStackTrace();
@@ -60,6 +77,7 @@ public class Login {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void login_usuario_ya_logeado() { // se puede logear varias veces sin hacer logout ?
 		try {

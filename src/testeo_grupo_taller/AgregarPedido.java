@@ -68,8 +68,10 @@ public class AgregarPedido {
 			e.printStackTrace();
 		}
 		try { //agrego el pedido
+			assertEquals(0,Empresa.getInstance().getPedidos().size());
 			Empresa.getInstance().agregarPedido(pedido);
 			assertNotNull(Empresa.getInstance().getPedidoDeCliente(this.cliente_logeado));
+			assertEquals(1,Empresa.getInstance().getPedidos().size());
 		} catch (SinVehiculoParaPedidoException e) {
 			fail("exception sin vehiculo disponible");
 		} catch (ClienteNoExisteException e) {

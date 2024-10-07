@@ -56,11 +56,12 @@ public class AgregarChofer {
 	
 	@Test
 	public void test_agregar_chofer_ingreso_futuro() {
-		Chofer chofer_agregar = new ChoferPermanente(this.dni,"marcelo hanson",2048,4);
+		ChoferPermanente chofer_agregar = new ChoferPermanente(this.dni,"marcelo hanson",2048,4);
 		try {
 			Empresa.getInstance().agregarChofer(chofer_agregar);
 			assertEquals(1,Empresa.getInstance().getChoferes().size());
 			assertEquals(chofer_agregar,Empresa.getInstance().getChoferes().get(this.dni));
+			assertTrue(chofer_agregar.getAntiguedad() > 0.); //antiguedad negativa
 			fail("agrega chofer con anio de ingreso posterior al actual");
 		} catch (ChoferRepetidoException e) {
 			//e.printStackTrace();
