@@ -24,90 +24,77 @@ import modeloDatos.Usuario;
 import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
 
-public class CalificacionDeChofer {
+public class CalificacionDeChofer_con_viajes {
 
-	Chofer chofer;
+	Chofer chofer_sin_viajes;
+	Chofer chofer_un_viaje;
+	Chofer chofer_tres_viajes;
 	Vehiculo vehiculo;
-	
-	@BeforeClass
-	public static void seteo() throws Exception{
-		Empresa.getInstance().agregarCliente("bkk", "12345", "burian");
-	}
 	
 	@Before
 	public void setUp() throws Exception {
-		this.chofer = new ChoferTemporario("3213213","medina");
-		Empresa.getInstance().agregarChofer(this.chofer);
-		this.vehiculo = new Moto("123123");
+		Empresa.getInstance().agregarCliente("a", "b", "c");
+		this.chofer_sin_viajes = new ChoferTemporario("1","medina");
+		Empresa.getInstance().agregarChofer(this.chofer_sin_viajes);
+		this.chofer_un_viaje = new ChoferTemporario("2","carlos");
+		Empresa.getInstance().agregarChofer(this.chofer_un_viaje);
+		this.chofer_tres_viajes = new ChoferTemporario("3","raul");
+		Empresa.getInstance().agregarChofer(this.chofer_tres_viajes);
+		this.vehiculo = new Moto("123");
 		Empresa.getInstance().agregarVehiculo(this.vehiculo);
+		crea_y_puntua_viaje(this.chofer_un_viaje,1);
+		crea_y_puntua_viaje(this.chofer_tres_viajes,1);
+		crea_y_puntua_viaje(this.chofer_tres_viajes,3);
+		crea_y_puntua_viaje(this.chofer_tres_viajes,5);
 	}
 
 	@Test
 	public void test_calificacion_sin_viajes() {
 		try {
-			double calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer);
+			double calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer_sin_viajes);
 			assertEquals(calificacion,0.0,0.1);
 			fail("devuelve calificacion cuando el chofer no tuvo viajes");
 		} catch (SinViajesException e) {
 			//esta ok
 		}
 	}
+	
 	@Test
-	public void test_calificacion_un_solo_viaje_0() {
-		int calificacion = 0;
+	public void test_calificacion_un_solo_viaje() {
 		try {
-			crea_y_puntua_viaje(calificacion);
-			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer);
-			assertEquals(calificacion,promedio_calificacion,0.1);
-		} catch (UsuarioNoExisteException | PasswordErroneaException | ClienteSinViajePendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SinViajesException e) {
-			fail("dice que no tiene viajes");
-		}
-	}
-	@Test
-	public void test_calificacion_un_solo_viaje_5() {
-		int calificacion = 5;
-		try {
-			crea_y_puntua_viaje(calificacion);
-			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer);
-			assertEquals(calificacion,promedio_calificacion,0.1);
-		} catch (UsuarioNoExisteException | PasswordErroneaException | ClienteSinViajePendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer_un_viaje);
+			assertEquals(promedio_calificacion,1.0,0.1);
 		} catch (SinViajesException e) {
 			fail("dice que no tiene viajes");
 		}
 	}
 	
 	@Test
-	public void test_calificacion_varios_viajes() {
-		int calificacion1,calificacion2,calificacion3;
-		double promedio;
-		calificacion1 = 3;
-		calificacion2 = 0;
-		calificacion3 = 5;
-		promedio = ((double)calificacion1 + (double)calificacion2 + (double)calificacion3) / 3.;
+	public void test_calificacion_tres_viajes() {
 		try {
-			crea_y_puntua_viaje(calificacion1);
-			crea_y_puntua_viaje(calificacion2);
-			crea_y_puntua_viaje(calificacion3);
-			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer);
-			assertEquals(promedio,promedio_calificacion,0.1); //mal calculado
-		} catch (UsuarioNoExisteException | PasswordErroneaException | ClienteSinViajePendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer_tres_viajes);
+			assertEquals(promedio_calificacion,3.0,0.1);
 		} catch (SinViajesException e) {
 			fail("dice que no tiene viajes");
 		}
 	}
 	
-	public void crea_y_puntua_viaje(int calificacion) throws UsuarioNoExisteException, PasswordErroneaException, ClienteSinViajePendienteException {
+	@Test
+	public void test_calificacion_chofer_no_registrado() {
+		try {
+			Chofer chofer_nuevo = new ChoferTemporario("4","b");
+			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(chofer_nuevo);
+			assertEquals(promedio_calificacion,0.0,0.1);
+		} catch (SinViajesException e) {
+			fail("dice que no tiene viajes");
+		}
+	}
+	
+	public void crea_y_puntua_viaje(Chofer chofer,int calificacion) throws UsuarioNoExisteException, PasswordErroneaException, ClienteSinViajePendienteException {
 		HashMap<Cliente,Viaje> viajes_iniciados = new HashMap<Cliente,Viaje>();
-		Cliente cliente = (Cliente)Empresa.getInstance().login("bkk", "12345");
+		Cliente cliente = (Cliente) Empresa.getInstance().login("a", "b");
 		Pedido pedido = new Pedido(cliente,1,false,false,10,"ZONA_SIN_ASFALTAR");
-		Viaje viaje_chofer = new Viaje(pedido,this.chofer,this.vehiculo);
+		Viaje viaje_chofer = new Viaje(pedido,chofer,this.vehiculo);
 		viajes_iniciados.put(cliente, viaje_chofer);
 		Empresa.getInstance().setViajesIniciados(viajes_iniciados);
 		Empresa.getInstance().pagarYFinalizarViaje(calificacion);
@@ -115,6 +102,7 @@ public class CalificacionDeChofer {
 	
 	@After
 	public void limpio() {
+		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
 		Empresa.getInstance().getViajesIniciados().clear();
