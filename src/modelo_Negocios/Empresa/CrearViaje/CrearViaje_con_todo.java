@@ -22,16 +22,9 @@ import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferPermanente;
-import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
 import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloDatos.Usuario;
-import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class CrearViaje_con_todo {
 	

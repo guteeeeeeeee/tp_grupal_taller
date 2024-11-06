@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.UsuarioYaExisteException;
-import modeloDatos.Cliente;
 import modeloNegocio.Empresa;
+import modeloDatos.Cliente;
 
 public class AgregarCliente_no_vacio {
 	

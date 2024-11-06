@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import modeloDatos.Cliente;
 import modeloNegocio.Empresa;
+import modeloDatos.Cliente;
 
 public class Logout_con_usuario_no_logeado {
 	

@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.ChoferRepetidoException;
+import modeloNegocio.Empresa;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
-import modeloNegocio.Empresa;
 
 public class AgregarChofer_vacio {
 	Chofer chofer;

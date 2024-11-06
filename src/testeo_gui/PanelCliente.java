@@ -32,13 +32,13 @@ import excepciones.UsuarioYaExisteException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
-import modeloDatos.Cliente;
-import modeloDatos.Pedido;
 import modeloDatos.Auto;
+import modeloNegocio.Empresa;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
+import modeloDatos.Cliente;
+import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import modeloNegocio.Empresa;
 
 public class PanelCliente {
 	Robot robot;

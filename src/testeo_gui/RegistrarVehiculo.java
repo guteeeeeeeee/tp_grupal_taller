@@ -22,8 +22,8 @@ import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloDatos.Combi;
 import modeloDatos.Moto;
-import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
+import modeloDatos.Vehiculo;
 
 public class RegistrarVehiculo {
 

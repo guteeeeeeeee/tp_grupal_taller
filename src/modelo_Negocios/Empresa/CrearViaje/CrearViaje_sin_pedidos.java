@@ -15,13 +15,9 @@ import excepciones.SinVehiculoParaPedidoException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import modeloDatos.Auto;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
 import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class CrearViaje_sin_pedidos {
 

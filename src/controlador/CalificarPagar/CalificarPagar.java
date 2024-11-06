@@ -10,12 +10,10 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import excepciones.SinViajesException;
+import modeloDatos.*;
+import modeloNegocio.Empresa;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
-import modeloDatos.*;
-import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
 import vista.Ventana;

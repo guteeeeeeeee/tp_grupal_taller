@@ -30,16 +30,16 @@ import excepciones.UsuarioYaExisteException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
-import modeloDatos.Cliente;
 import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloDatos.Viaje;
 import modeloDatos.Auto;
+import modeloNegocio.Empresa;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
+import modeloDatos.Cliente;
+import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import modeloNegocio.Empresa;
+import modeloDatos.Viaje;
 
 
 public class VisualizarInfoAdmin {

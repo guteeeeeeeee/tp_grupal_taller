@@ -14,15 +14,9 @@ import excepciones.ClienteSinViajePendienteException;
 import excepciones.PasswordErroneaException;
 import excepciones.SinViajesException;
 import excepciones.UsuarioNoExisteException;
-import modeloDatos.Chofer;
-import modeloDatos.Viaje;
-import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
 import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloDatos.Usuario;
-import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class CalificacionDeChofer_con_viajes {
 

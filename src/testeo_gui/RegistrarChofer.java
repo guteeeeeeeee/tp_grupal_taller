@@ -19,9 +19,9 @@ import org.junit.Test;
 import controlador.Controlador;
 import excepciones.ChoferRepetidoException;
 import excepciones.UsuarioYaExisteException;
+import modeloNegocio.Empresa;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
-import modeloNegocio.Empresa;
 
 public class RegistrarChofer {
 

@@ -1,4 +1,4 @@
-package modeloDatos.Vehiculo;
+package modelo_Datos.Vehiculo;
 
 import static org.junit.Assert.*;
 

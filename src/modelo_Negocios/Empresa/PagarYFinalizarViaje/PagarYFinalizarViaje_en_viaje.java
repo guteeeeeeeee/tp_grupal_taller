@@ -21,13 +21,8 @@ import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferPermanente;
-import modeloDatos.Cliente;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class PagarYFinalizarViaje_en_viaje {
 	

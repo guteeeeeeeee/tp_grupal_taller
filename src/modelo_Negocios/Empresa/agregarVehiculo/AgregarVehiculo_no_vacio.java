@@ -10,8 +10,8 @@ import org.junit.Test;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
-import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
+import modeloDatos.Vehiculo;
 
 public class AgregarVehiculo_no_vacio {
 	Vehiculo vehiculo;

@@ -1,4 +1,4 @@
-package modeloDatos.Viaje;
+package modelo_Datos.Viaje;
 
 import static org.junit.Assert.*;
 

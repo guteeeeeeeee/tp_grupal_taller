@@ -1,4 +1,4 @@
-package modeloDatos.Administrador;
+package modelo_Datos.Administrador;
 
 import static org.junit.Assert.*;
 

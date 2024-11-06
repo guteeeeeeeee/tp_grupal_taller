@@ -31,12 +31,12 @@ import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
+import modeloNegocio.Empresa;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import modeloNegocio.Empresa;
 
 public class CalificarViaje {
 	Robot robot;

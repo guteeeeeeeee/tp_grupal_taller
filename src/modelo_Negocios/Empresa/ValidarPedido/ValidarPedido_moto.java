@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
-import modeloDatos.Cliente;
 import modeloDatos.Moto;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
 import modeloDatos.Auto;
 import modeloNegocio.Empresa;
+import modeloDatos.Cliente;
+import modeloDatos.Pedido;
+import modeloDatos.Vehiculo;
 
 public class ValidarPedido_moto {
 		Cliente user_logeado;

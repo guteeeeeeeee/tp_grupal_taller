@@ -1,13 +1,11 @@
-package modeloDatos.Cliente;
+package modelo_Datos.Cliente;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import modeloDatos.Administrador;
 import modeloDatos.*;
-import modeloDatos.Usuario;
 
 public class Getters_cliente {
 

@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modeloDatos.*;
-import modeloDatos.Cliente;
 import modeloNegocio.Empresa;
+import modeloDatos.Cliente;
 
 public class Logout_admin_logeado {
 

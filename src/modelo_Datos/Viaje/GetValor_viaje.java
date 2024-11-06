@@ -1,15 +1,12 @@
-package modeloDatos.Viaje;
+package modelo_Datos.Viaje;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
-import modeloDatos.Moto;
-import modeloDatos.Pedido;
 import modeloDatos.*;
+import modeloDatos.ChoferTemporario;
 
 public class GetValor_viaje {
 

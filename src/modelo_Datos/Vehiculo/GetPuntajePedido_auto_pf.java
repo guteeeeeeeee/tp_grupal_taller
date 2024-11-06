@@ -1,4 +1,4 @@
-package modeloDatos.Vehiculo;
+package modelo_Datos.Vehiculo;
 
 import static org.junit.Assert.*;
 
@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modeloDatos.Auto;
+import modeloNegocio.Empresa;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import modeloNegocio.Empresa;
 
 public class GetPuntajePedido_auto_pf {
 

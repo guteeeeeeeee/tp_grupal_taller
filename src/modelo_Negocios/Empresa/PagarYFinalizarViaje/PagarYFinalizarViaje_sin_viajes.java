@@ -11,13 +11,8 @@ import org.junit.Test;
 
 import excepciones.ClienteSinViajePendienteException;
 import modeloDatos.Auto;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferPermanente;
-import modeloDatos.Cliente;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class PagarYFinalizarViaje_sin_viajes {
 

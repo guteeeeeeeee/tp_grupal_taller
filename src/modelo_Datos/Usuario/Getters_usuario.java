@@ -1,4 +1,4 @@
-package modeloDatos.Usuario;
+package modelo_Datos.Usuario;
 
 import static org.junit.Assert.*;
 

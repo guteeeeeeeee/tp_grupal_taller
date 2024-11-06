@@ -8,11 +8,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import excepciones.SinViajesException;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferTemporario;
 import modeloDatos.Moto;
-import modeloDatos.Vehiculo;
 import modeloNegocio.Empresa;
+import modeloDatos.*;
 
 public class CalificacionDeChofer_sin_choferes {
 

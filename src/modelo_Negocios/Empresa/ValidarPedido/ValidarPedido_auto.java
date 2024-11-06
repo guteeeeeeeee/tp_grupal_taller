@@ -8,11 +8,11 @@ import org.junit.Test;
 
 import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
-import modeloDatos.Cliente;
 import modeloDatos.Auto;
+import modeloNegocio.Empresa;
+import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import modeloNegocio.Empresa;
 
 public class ValidarPedido_auto {
 
