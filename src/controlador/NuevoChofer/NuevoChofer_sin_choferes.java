@@ -13,6 +13,8 @@ import modeloDatos.ChoferPermanente;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class NuevoChofer_sin_choferes {
@@ -36,7 +38,7 @@ public class NuevoChofer_sin_choferes {
 	public void test_agregar_chofer_temporario() {
 		String dni = "12345";
 		String nombre = "jorge";
-		String tipo = "TEMPORARIO";
+		String tipo = Constantes.TEMPORARIO;
 		
 		when(this.vista_mock.getTipoChofer()).thenReturn(tipo);
 		when(this.vista_mock.getNombreChofer()).thenReturn(nombre);
@@ -55,7 +57,7 @@ public class NuevoChofer_sin_choferes {
 		String nombre = "jorge";
 		int anio = 2020;
 		int cant_hijos = 4;
-		String tipo = "PERMANENTE";
+		String tipo = Constantes.PERMANENTE;
 		
 		when(this.vista_mock.getTipoChofer()).thenReturn(tipo);
 		when(this.vista_mock.getNombreChofer()).thenReturn(nombre);

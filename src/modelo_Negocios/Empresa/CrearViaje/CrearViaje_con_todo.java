@@ -24,6 +24,7 @@ import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class CrearViaje_con_todo {
@@ -60,7 +61,7 @@ public class CrearViaje_con_todo {
 
 	@Test
 	public void test_creo_viaje() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -92,8 +93,8 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_pedido_inexistente() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
-		Pedido pedido2 = new Pedido(this.user1,5,false,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
+		Pedido pedido2 = new Pedido(this.user1,5,false,false,10,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -119,7 +120,7 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_cliente_viaje_pendiente() {
-		Pedido pedido = new Pedido(this.user2,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user2,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -148,7 +149,7 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_chofer_no_disponible() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -177,7 +178,7 @@ public class CrearViaje_con_todo {
 	@Test
 	public void test_creo_viaje_chofer_no_registrado() {
 		Chofer chofer_no_registrado = new ChoferTemporario("333","jorge");
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -203,7 +204,7 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_vehiculo_no_disponible() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -231,7 +232,7 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_vehiculo_no_valido() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -258,7 +259,7 @@ public class CrearViaje_con_todo {
 	@Test
 	public void test_creo_viaje_vehiculo_no_registrado() {
 		Vehiculo vehiculo_no_registrado = new Auto("zzz",4,true);
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
@@ -283,7 +284,7 @@ public class CrearViaje_con_todo {
 	}
 	
 	public void crea_viaje_anterior(Cliente cliente) {
-		Pedido pedido_test = new Pedido(cliente,4,false,false,5,"ZONA_STANDARD");
+		Pedido pedido_test = new Pedido(cliente,4,false,false,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido_test);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException

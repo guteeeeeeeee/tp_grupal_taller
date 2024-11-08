@@ -13,6 +13,7 @@ import controlador.Controlador;
 import excepciones.SinViajesException;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
+import util.Mensajes;
 import vista.IVista;
 import vista.Ventana;
 
@@ -66,7 +67,7 @@ public class Registrar {
 		
 		assertEquals(1,Empresa.getInstance().getClientes().size());
 		this.controlador.registrar();
-		assertEquals("La contrasena y su confirmacion no coinciden",this.op.getMensaje());
+		assertEquals("no dice que La contrasena y su confirmacion no coinciden",Mensajes.PASS_NO_COINCIDE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getClientes().size());
 	}
 	
@@ -83,7 +84,7 @@ public class Registrar {
 		
 		assertEquals(1,Empresa.getInstance().getClientes().size());
 		this.controlador.registrar();
-		assertEquals("Usuario repetido",this.op.getMensaje());
+		assertEquals("no dice que el Usuario esta repetido",Mensajes.USUARIO_REPETIDO.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getClientes().size());
 	}
 	

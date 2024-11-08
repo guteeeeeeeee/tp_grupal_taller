@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import controlador.Controlador;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
+import util.Constantes;
 import vista.IVista;
 import vista.Ventana;
 
@@ -31,7 +33,7 @@ public class NuevoVehiculo_sin_vehiculos {
 	@Test
 	public void test_agregar_nuevo_vehiculo() {
 		String patente = "mmm111";
-		String tipo = "MOTO";
+		String tipo = Constantes.MOTO;
 		when(this.vista_mock.getTipoVehiculo()).thenReturn(tipo);
 		when(this.vista_mock.getPatente()).thenReturn(patente);
 		assertEquals(0,Empresa.getInstance().getVehiculos().size());
@@ -39,6 +41,11 @@ public class NuevoVehiculo_sin_vehiculos {
 		assertEquals(1,Empresa.getInstance().getVehiculos().size());
 		assertEquals(patente,Empresa.getInstance().getVehiculos().get(patente).getPatente());
 		assertEquals(1,Empresa.getInstance().getVehiculos().get(patente).getCantidadPlazas());
+	}
+	
+	@After
+	public void limpiar() {
+		Empresa.getInstance().getVehiculos().clear();
 	}
 
 }

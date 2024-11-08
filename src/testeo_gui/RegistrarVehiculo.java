@@ -23,6 +23,8 @@ import modeloDatos.Auto;
 import modeloDatos.Combi;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
+import util.Mensajes;
 import modeloDatos.Vehiculo;
 
 public class RegistrarVehiculo {
@@ -43,27 +45,27 @@ public class RegistrarVehiculo {
 		}
 		login_admin();
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_moto() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "MOTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.MOTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 		assertFalse("el boton de registrar nuevo vehiculo debe estar deshabilitado",nuevo_vehiculo.isEnabled());
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("a", robot);
 		TestUtils.clickComponent(boton_moto, robot);
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_auto_plazas_1() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "AUTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.AUTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 		assertFalse("el boton de registrar nuevo vehiculo debe estar deshabilitado",nuevo_vehiculo.isEnabled());
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("a", robot);
@@ -74,14 +76,14 @@ public class RegistrarVehiculo {
 		robot.delay(TestUtils.getDelay());
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_auto_plazas_4() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "AUTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.AUTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 		assertFalse("el boton de registrar nuevo vehiculo debe estar deshabilitado",nuevo_vehiculo.isEnabled());
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("a", robot);
@@ -92,14 +94,14 @@ public class RegistrarVehiculo {
 		robot.delay(TestUtils.getDelay());
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_combi_plazas_5() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "COMBI");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.COMBI);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 		assertFalse("el boton de registrar nuevo vehiculo debe estar deshabilitado",nuevo_vehiculo.isEnabled());
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("a", robot);
@@ -110,14 +112,14 @@ public class RegistrarVehiculo {
 		robot.delay(TestUtils.getDelay());
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_combi_plazas_10() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "COMBI");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.COMBI);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 		assertFalse("el boton de registrar nuevo vehiculo debe estar deshabilitado",nuevo_vehiculo.isEnabled());
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("a", robot);
@@ -128,15 +130,15 @@ public class RegistrarVehiculo {
 		robot.delay(TestUtils.getDelay());
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_combi_exitosamente() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "COMBI");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.COMBI);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("abc121", robot);
@@ -150,18 +152,18 @@ public class RegistrarVehiculo {
 		assertEquals("deberia tener la misma patente que se ingreso","abc121",lista_vehiculos.getModel().getElementAt(0).getPatente());
 		assertEquals("deberia tener la misma cant de plazas que se ingreso",7,lista_vehiculos.getModel().getElementAt(0).getCantidadPlazas());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_combi_repetida() {
 		robot.delay(TestUtils.getDelay());
 		agregar_combi();
 		controlador.getVista().actualizar();
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "COMBI");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_combi = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.COMBI);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		//JCheckBox mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_VEHICULO_ACEPTA_MASCOTA");
 		
 		TestUtils.clickComponent(patente, robot);
@@ -173,18 +175,18 @@ public class RegistrarVehiculo {
 		robot.delay(TestUtils.getDelay());
 		assertEquals("el size de la lista deberia ser 1",1,lista_vehiculos.getModel().getSize());
 		TestUtils.clickComponent(nuevo_vehiculo, robot);
-		assertEquals("deberia decir vehiculo ya registrado","Vehiculo ya Registrado",op.getMensaje());
+		assertEquals("deberia decir vehiculo ya registrado",Mensajes.VEHICULO_YA_REGISTRADO.getValor(),op.getMensaje());
 		assertEquals("el size de la lista deberia ser 1",1,lista_vehiculos.getModel().getSize());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_auto_exitosamente() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "AUTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.AUTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("yta129", robot);
@@ -198,18 +200,18 @@ public class RegistrarVehiculo {
 		assertEquals("deberia tener la misma patente que se ingreso","yta129",lista_vehiculos.getModel().getElementAt(0).getPatente());
 		assertEquals("deberia tener la misma cant de plazas que se ingreso",3,lista_vehiculos.getModel().getElementAt(0).getCantidadPlazas());
 	}
-	@Ignore
+	
 	@Test
 	public void test_registrar_auto_repetido() {
 		robot.delay(TestUtils.getDelay());
 		agregar_auto();
 		controlador.getVista().actualizar();
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANTIDAD_PLAZAS");
-		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "AUTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JTextField cant_plazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+		JRadioButton boton_auto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.AUTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("poo123", robot);
@@ -220,17 +222,17 @@ public class RegistrarVehiculo {
 		assertTrue("el boton de registrar nuevo vehiculo debe estar habilitado",nuevo_vehiculo.isEnabled());
 		assertEquals("el size de la lista deberia ser 1",1,lista_vehiculos.getModel().getSize());
 		TestUtils.clickComponent(nuevo_vehiculo, robot);
-		assertEquals("deberia decir vehiculo ya registrado","Vehiculo ya Registrado",op.getMensaje());
+		assertEquals("deberia decir vehiculo ya registrado",Mensajes.VEHICULO_YA_REGISTRADO.getValor(),op.getMensaje());
 		assertEquals("el size de la lista deberia ser 1",1,lista_vehiculos.getModel().getSize());
 	}
 	
 	@Test
 	public void test_registrar_moto_exitosamente() {
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "MOTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.MOTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("yta129", robot);
@@ -249,10 +251,10 @@ public class RegistrarVehiculo {
 		agregar_moto();
 		controlador.getVista().actualizar();
 		robot.delay(TestUtils.getDelay());
-		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PATENTE");
-		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "MOTO");
-		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_VEHICULO");
-		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JTextField patente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+		JRadioButton boton_moto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.MOTO);
+		JButton nuevo_vehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+		JList<Vehiculo> lista_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		
 		TestUtils.clickComponent(patente, robot);
 		TestUtils.tipeaTexto("prr765", robot);
@@ -297,14 +299,14 @@ public class RegistrarVehiculo {
 	
 	public void login_admin() {
 		robot.delay(TestUtils.getDelay());
-		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "NOMBRE_USUARIO");
-		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PASSWORD");
+		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
 		TestUtils.clickComponent(nombre, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		TestUtils.clickComponent(password, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		robot.delay(TestUtils.getDelay());
-		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "LOGIN");
+		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
 		TestUtils.clickComponent(boton_login, robot);
 	}
 	

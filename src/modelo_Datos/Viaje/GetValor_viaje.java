@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import modeloDatos.*;
 import modeloDatos.ChoferTemporario;
+import util.Constantes;
 
 public class GetValor_viaje {
 
@@ -15,7 +16,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo moto = new Moto("mmm111");
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,1,false,false,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,moto);
 	}
 
@@ -24,7 +25,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,5,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(cliente,5,true,true,5,Constantes.ZONA_STANDARD);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(4250.0,viaje.getValor(),1.0);
 	}
@@ -34,7 +35,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,2,true,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(cliente,2,true,false,5,Constantes.ZONA_STANDARD);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(2900.0,viaje.getValor(),1.0);
 	}
@@ -44,7 +45,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,10,false,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(cliente,10,false,true,5,Constantes.ZONA_STANDARD);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(3750.0,viaje.getValor(),1.0);
 	}
@@ -54,7 +55,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,1,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(cliente,1,false,false,5,Constantes.ZONA_STANDARD);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(1600.0,viaje.getValor(),1.0);
 	}
@@ -65,7 +66,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,5,true,true,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,5,true,true,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(5000.0,viaje.getValor(),1.0);
 	}
@@ -75,7 +76,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,2,true,false,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,2,true,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(3350.0,viaje.getValor(),1.0);
 	}
@@ -85,7 +86,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,10,false,true,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,10,false,true,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(5000.0,viaje.getValor(),1.0);
 	}
@@ -95,7 +96,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,1,false,false,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(1950.0,viaje.getValor(),1.0);
 	}
@@ -105,7 +106,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,5,true,true,5,"ZONA_PELIGROSA");
+		Pedido pedido = new Pedido(cliente,5,true,true,5,Constantes.ZONA_PELIGROSA);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(4750.0,viaje.getValor(),1.0);
 	}
@@ -115,7 +116,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,2,true,false,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,2,true,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(3400.0,viaje.getValor(),1.0);
 	}
@@ -125,7 +126,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,10,false,true,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,10,false,true,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(4250.0,viaje.getValor(),1.0);
 	}
@@ -135,7 +136,7 @@ public class GetValor_viaje {
 		Chofer chofer = new ChoferTemporario("123","juan");
 		Vehiculo combi = new Combi("mmm111",5,true);
 		Cliente cliente = new Cliente("pepe1","123","pepe");
-		Pedido pedido = new Pedido(cliente,1,false,false,5,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje = new Viaje(pedido,chofer,combi);
 		assertEquals(2100.0,viaje.getValor(),1.0);
 	}

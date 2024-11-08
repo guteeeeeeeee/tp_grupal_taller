@@ -18,6 +18,7 @@ import excepciones.VehiculoNoValidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
@@ -48,7 +49,7 @@ public class AgregarPedido_cliente_en_viaje {
 		this.auto = new Auto("aaa111",3,true);
 		Empresa.getInstance().agregarVehiculo(auto);
 		
-		this.pedido1 = new Pedido(this.user2,1,false,false,5,"ZONA_STANDARD");
+		this.pedido1 = new Pedido(this.user2,1,false,false,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(this.pedido1);
 		
 		Empresa.getInstance().crearViaje(pedido1, chofer1, moto);

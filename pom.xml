@@ -15,14 +15,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>SubiQueTeLlevo</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/SubiQueTeLlevo_v2.jar</systemPath>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>

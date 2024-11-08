@@ -17,6 +17,8 @@ import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
+import util.Constantes;
+import util.Mensajes;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
 import vista.Ventana;
@@ -60,7 +62,7 @@ public class Login {
 		
 		assertNull(Empresa.getInstance().getUsuarioLogeado());
 		this.controlador.login();
-		assertEquals("Password incorrecto",this.op.getMensaje());
+		assertEquals("no dice que la password es incorrecta",Mensajes.PASS_ERRONEO.getValor(),this.op.getMensaje());
 		assertNull(Empresa.getInstance().getUsuarioLogeado());
 	}
 	
@@ -73,7 +75,7 @@ public class Login {
 		
 		assertNull(Empresa.getInstance().getUsuarioLogeado());
 		this.controlador.login();
-		assertEquals("Usuario inexistente",this.op.getMensaje());
+		assertEquals("no dice que el usuario es inexistente",Mensajes.USUARIO_DESCONOCIDO.getValor(),this.op.getMensaje());
 		assertNull(Empresa.getInstance().getUsuarioLogeado());
 	}
 	

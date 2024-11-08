@@ -22,6 +22,7 @@ import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class PagarYFinalizarViaje_en_viaje {
@@ -43,7 +44,7 @@ public class PagarYFinalizarViaje_en_viaje {
 		Empresa.getInstance().agregarChofer(this.chofer);
 		this.vehiculo = new Auto("pda123",3,true);
 		Empresa.getInstance().agregarVehiculo(this.vehiculo);
-		Pedido pedido_test = new Pedido(this.cliente_logeado,2,false,true,5,"ZONA_STANDARD");
+		Pedido pedido_test = new Pedido(this.cliente_logeado,2,false,true,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(pedido_test);
 		Viaje viaje = new Viaje(pedido_test,this.chofer,this.vehiculo);
 		/*HashMap<Cliente,Pedido> pedidos_test = new HashMap<Cliente,Pedido>();
@@ -97,9 +98,9 @@ public class PagarYFinalizarViaje_en_viaje {
 			assertEquals(calificacion,viajes_cliente.getLast().getCalificacion());
 			assertEquals(this.chofer,viajes_cliente.getLast().getChofer());
 			assertEquals(this.vehiculo,viajes_cliente.getLast().getVehiculo());
-			} catch (ClienteSinViajePendienteException e) {
-				fail("cliente no esta en viaje cuando si lo esta");
-			}
+		} catch (ClienteSinViajePendienteException e) {
+			fail("cliente no esta en viaje cuando si lo esta");
+		}
 	}
 	
 	@After

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import modeloDatos.*;
 import modeloNegocio.Empresa;
+import util.Constantes;
 
 public class Getters_viaje {
 
@@ -21,7 +22,7 @@ public class Getters_viaje {
 		this.chofer = new ChoferTemporario("123","juan");
 		this.moto = new Moto("mmm111");
 		this.cliente = new Cliente("pepe1","123","pepe");
-		this.pedido = new Pedido(this.cliente,1,false,false,5,"ZONA_SIN_ASFALTAR");
+		this.pedido = new Pedido(this.cliente,1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
 		this.viaje = new Viaje(this.pedido,this.chofer,this.moto);
 	}
 

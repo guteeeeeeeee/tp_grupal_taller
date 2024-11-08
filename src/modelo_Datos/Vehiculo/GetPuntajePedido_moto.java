@@ -9,6 +9,7 @@ import org.junit.Test;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class GetPuntajePedido_moto {
@@ -25,14 +26,14 @@ public class GetPuntajePedido_moto {
 
 	@Test
 	public void test_pedido_1_pasajero() {
-		Pedido pedido = new Pedido(this.user_logeado,1,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,1,false,false,5,Constantes.ZONA_STANDARD);
 		int puntaje = this.moto.getPuntajePedido(pedido);
 		assertEquals(1000,puntaje);
 	}
 	
 	@Test
 	public void test_pedido_2_pasajeros() {
-		Pedido pedido = new Pedido(this.user_logeado,2,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,2,false,false,5,Constantes.ZONA_STANDARD);
 		assertNull(this.moto.getPuntajePedido(pedido));
 	}
 

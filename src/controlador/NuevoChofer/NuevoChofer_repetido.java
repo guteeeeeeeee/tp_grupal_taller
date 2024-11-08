@@ -13,6 +13,8 @@ import modeloDatos.*;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class NuevoChofer_repetido {
@@ -40,7 +42,7 @@ public class NuevoChofer_repetido {
 		String nombre = "jorge";
 		int anio = 2020;
 		int cant_hijos = 4;
-		String tipo = "PERMANENTE";
+		String tipo = Constantes.PERMANENTE;
 		
 		when(this.vista_mock.getTipoChofer()).thenReturn(tipo);
 		when(this.vista_mock.getNombreChofer()).thenReturn(nombre);
@@ -50,7 +52,7 @@ public class NuevoChofer_repetido {
 		
 		assertEquals(1,Empresa.getInstance().getChoferes().size());
 		this.controlador.nuevoChofer();
-		assertEquals("Chofer Ya Registrado",this.op.getMensaje());
+		assertEquals("no dice que el chofer ya registrado",Mensajes.CHOFER_YA_REGISTRADO.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getChoferes().size());
 	}
 	

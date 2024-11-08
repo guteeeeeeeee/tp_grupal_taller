@@ -21,6 +21,8 @@ import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class NuevoPedido_en_viaje {
@@ -46,7 +48,7 @@ public class NuevoPedido_en_viaje {
 		Cliente viajante = (Cliente) Empresa.getInstance().login("alfa", "123");
 		Empresa.getInstance().logout();
 		
-		Pedido pedido = new Pedido(viajante,1,false,false,5,"ZONA_PELIGROSA");
+		Pedido pedido = new Pedido(viajante,1,false,false,5,Constantes.ZONA_PELIGROSA);
 		Empresa.getInstance().agregarPedido(pedido);
 		
 		Empresa.getInstance().crearViaje(pedido, chofer, moto);
@@ -78,7 +80,7 @@ public class NuevoPedido_en_viaje {
 		assertEquals(0,Empresa.getInstance().getPedidos().size());
 		assertNotNull(Empresa.getInstance().getViajeDeCliente(usuario_actual));
 		this.controlador.nuevoPedido();
-		assertEquals("Cliente con viaje pendiente",this.op.getMensaje());
+		assertEquals("no dice que el Cliente tiene viaje pendiente",Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(),this.op.getMensaje());
 		assertEquals(0,Empresa.getInstance().getPedidos().size());
 	}
 	

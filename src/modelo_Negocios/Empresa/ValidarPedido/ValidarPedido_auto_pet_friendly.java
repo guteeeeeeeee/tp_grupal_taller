@@ -10,6 +10,7 @@ import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
 import modeloDatos.Auto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
@@ -28,31 +29,31 @@ Cliente user_logeado;
 	
 	@Test
 	public void test_pedido_con_auto_pedido_1_pasajero() throws UsuarioNoExisteException, PasswordErroneaException {
-		Pedido pedido = new Pedido(this.user_logeado,1,false,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,1,false,false,10,Constantes.ZONA_STANDARD);
 		assertTrue(Empresa.getInstance().validarPedido(pedido));
 	}
 	
 	@Test
 	public void test_pedido_con_auto_pedido_2_pasajeros_con_mascota() throws UsuarioNoExisteException, PasswordErroneaException {
-		Pedido pedido = new Pedido(this.user_logeado,2,true,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,2,true,false,10,Constantes.ZONA_STANDARD);
 		assertTrue(Empresa.getInstance().validarPedido(pedido));
 	}
 	
 	@Test
 	public void test_pedido_con_auto_pedido_3_pasajeros_sin_mascota() throws UsuarioNoExisteException, PasswordErroneaException {
-		Pedido pedido = new Pedido(this.user_logeado,3,false,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,3,false,false,10,Constantes.ZONA_STANDARD);
 		assertTrue(Empresa.getInstance().validarPedido(pedido));
 	}
 	
 	@Test
 	public void test_pedido_con_auto_pedido_4_pasajeros_sin_mascota() throws UsuarioNoExisteException, PasswordErroneaException {
-		Pedido pedido = new Pedido(this.user_logeado,4,false,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,4,false,false,10,Constantes.ZONA_STANDARD);
 		assertFalse(Empresa.getInstance().validarPedido(pedido));
 	}
 	
 	@Test
 	public void test_pedido_con_auto_pedido_5_pasajeros_sin_mascota() throws UsuarioNoExisteException, PasswordErroneaException {
-		Pedido pedido = new Pedido(this.user_logeado,5,false,false,10,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,5,false,false,10,Constantes.ZONA_STANDARD);
 		assertFalse(Empresa.getInstance().validarPedido(pedido));
 	}
 	

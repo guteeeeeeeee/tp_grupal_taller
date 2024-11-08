@@ -19,6 +19,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import controlador.Controlador;
+import util.Constantes;
+import util.Mensajes;
 import excepciones.ChoferNoDisponibleException;
 import excepciones.ChoferRepetidoException;
 import excepciones.ClienteConPedidoPendienteException;
@@ -62,33 +64,30 @@ public class CalificarViaje {
 		login_usuario();
 	}
 	
-	@Ignore
 	@Test
 	public void test_pagar_calificar_0() {
 		agregarViaje();
 		controlador.getVista().actualizar();
 		
-		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_DE_VIAJE");
+		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
 	
-		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICAR_PAGAR");
+		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
 		
 		assertFalse("el boton para pagar deberia estar deshabilitado",boton_pagar.isEnabled());
 		TestUtils.clickComponent(text_calificacion, robot);
 		TestUtils.tipeaTexto("0", robot);
 		robot.delay(TestUtils.getDelay());
 		assertTrue("el boton para pagar deberia estar habilitado",boton_pagar.isEnabled());
-		//TestUtils.clickComponent(boton_pagar, robot);
 	}
 	
-	@Ignore
 	@Test
 	public void test_pagar_calificar_5() {
 		agregarViaje();
 		controlador.getVista().actualizar();
 		
-		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_DE_VIAJE");
+		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
 		
-		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICAR_PAGAR");
+		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
 		
 		assertFalse("el boton para pagar deberia estar deshabilitado",boton_pagar.isEnabled());
 		TestUtils.clickComponent(text_calificacion, robot);
@@ -103,14 +102,14 @@ public class CalificarViaje {
 		agregarViaje();
 		controlador.getVista().actualizar();
 
-		JList lista_viajes_cliente = (JList) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_CLIENTE");
+		JList lista_viajes_cliente = (JList) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_CLIENTE);
 
-		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), "PEDIDO_O_VIAJE_ACTUAL");
+		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
 		assertFalse("la lista de viajes realizados no deberia estar vacia",text_viajes_realizados.getText().isEmpty());
 		
-		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_DE_VIAJE");
+		JTextField text_calificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
 		
-		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICAR_PAGAR");
+		JButton boton_pagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
 		
 		TestUtils.clickComponent(text_calificacion, robot);
 		TestUtils.tipeaTexto("3", robot);

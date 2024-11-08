@@ -9,6 +9,7 @@ import org.junit.Test;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class GetPuntajePedido_auto {
@@ -25,34 +26,34 @@ public class GetPuntajePedido_auto {
 
 	@Test
 	public void test_pedido_1_pasajero() {
-		Pedido pedido = new Pedido(this.user_logeado,1,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,1,false,false,5,Constantes.ZONA_STANDARD);
 		int puntaje = this.auto.getPuntajePedido(pedido);
 		assertEquals(30,puntaje);
 	}
 	
 	@Test
 	public void test_pedido_2_pasajeros() {
-		Pedido pedido = new Pedido(this.user_logeado,2,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,2,false,false,5,Constantes.ZONA_STANDARD);
 		int puntaje = this.auto.getPuntajePedido(pedido);
 		assertEquals(60,puntaje);
 	}
 	
 	@Test
 	public void test_pedido_2_pasajeros_con_mascota() {
-		Pedido pedido = new Pedido(this.user_logeado,2,true,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,2,true,false,5,Constantes.ZONA_STANDARD);
 		assertNull(this.auto.getPuntajePedido(pedido));
 	}
 	
 	@Test
 	public void test_pedido_2_pasajeros_con_baul() {
-		Pedido pedido = new Pedido(this.user_logeado,2,false,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,2,false,true,5,Constantes.ZONA_STANDARD);
 		int puntaje = this.auto.getPuntajePedido(pedido);
 		assertEquals(80,puntaje);
 	}
 	
 	@Test
 	public void test_pedido_4_pasajeros() {
-		Pedido pedido = new Pedido(this.user_logeado,4,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user_logeado,4,false,false,5,Constantes.ZONA_STANDARD);
 		assertNull(this.auto.getPuntajePedido(pedido));
 	}
 

@@ -41,9 +41,9 @@ public class PagarYFinalizarViaje_sin_viajes {
 		try {				
 			Empresa.getInstance().pagarYFinalizarViaje(calificacion);
 			fail("debe tirar la excepcion de cliente sin viaje pendiente");
-			} catch (ClienteSinViajePendienteException e) {
-				//esta ok
-			}
+		} catch (ClienteSinViajePendienteException e) {
+			//esta ok
+		}
 	}
 	
 	@After

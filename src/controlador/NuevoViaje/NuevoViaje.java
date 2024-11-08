@@ -14,6 +14,8 @@ import controlador.Controlador;
 import modeloDatos.*;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
+import util.Constantes;
+import util.Mensajes;
 import vista.*;
 
 public class NuevoViaje {
@@ -47,10 +49,10 @@ public class NuevoViaje {
 		Empresa.getInstance().agregarVehiculo(combi);
 		
 		this.user1 = (Cliente) Empresa.getInstance().login("ibu","aaa");
-		this.pedido1 = new Pedido(this.user1,1,false,false,5,"ZONA_STANDARD");
+		this.pedido1 = new Pedido(this.user1,1,false,false,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(this.pedido1);
 		this.user2 = (Cliente) Empresa.getInstance().login("teo","aaa");
-		this.pedido2 = new Pedido(this.user2,3,true,false,10,"ZONA_STANDARD");
+		this.pedido2 = new Pedido(this.user2,3,true,false,10,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(this.pedido2);
 		this.user3 = (Cliente) Empresa.getInstance().login("alfa","aaa");
 		
@@ -84,7 +86,7 @@ public class NuevoViaje {
 		
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.nuevoViaje();
-		assertEquals("El vehiculo no puede atender del pedido",this.op.getMensaje());
+		assertEquals("no dice que El vehiculo no puede atender el pedido",Mensajes.VEHICULO_NO_VALIDO.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 	}
 	
@@ -92,12 +94,12 @@ public class NuevoViaje {
 	public void test_nuevo_viaje_pedido_inexistente() {
 		when(this.vista_mock.getChoferDisponibleSeleccionado()).thenReturn(this.chofer2); //getChoferSeleccionado
 		when(this.vista_mock.getVehiculoDisponibleSeleccionado()).thenReturn(this.moto); //getVehiculoDisponibleSeleccionado
-		Pedido pedido_inexistente = new Pedido(this.user2,1,false,false,10,"ZONA_STANDARD");
+		Pedido pedido_inexistente = new Pedido(this.user2,1,false,false,10,Constantes.ZONA_STANDARD);
 		when(this.vista_mock.getPedidoSeleccionado()).thenReturn(pedido_inexistente); //getPedidoSeleccionado
 		
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.nuevoViaje();
-		assertEquals("El Pedido no figura en la lista",this.op.getMensaje());
+		assertEquals("no dice que El Pedido no figura en la lista",Mensajes.PEDIDO_INEXISTENTE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 	}
 	
@@ -109,7 +111,7 @@ public class NuevoViaje {
 		
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.nuevoViaje();
-		assertEquals("El chofer no esta disponoble",this.op.getMensaje());
+		assertEquals("no dice que El chofer no esta disponible",Mensajes.CHOFER_NO_DISPONIBLE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 	}
 	
@@ -121,14 +123,14 @@ public class NuevoViaje {
 		
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.nuevoViaje();
-		assertEquals("El vehiculo no esta disponible",this.op.getMensaje());
+		assertEquals("no dice que El vehiculo no esta disponible",Mensajes.VEHICULO_NO_DISPONIBLE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 	}
 	
 	@Test
 	public void test_nuevo_viaje_cliente_en_viaje() {
 		HashMap<Cliente,Pedido> pedidos_aux = new HashMap<Cliente,Pedido>();
-		Pedido pedido_aux = new Pedido(user2,1,false,false,5,"ZONA_PELIGROSA");
+		Pedido pedido_aux = new Pedido(user2,1,false,false,5,Constantes.ZONA_PELIGROSA);
 		pedidos_aux.put(user1, pedido1);
 		pedidos_aux.put(user2, pedido_aux);
 		
@@ -139,7 +141,7 @@ public class NuevoViaje {
 		
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.nuevoViaje();
-		assertEquals("Cliente con viaje pendiente",this.op.getMensaje());
+		assertEquals("no dice que el Cliente tiene viaje pendiente",Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getViajesIniciados().size());
 	}
 	

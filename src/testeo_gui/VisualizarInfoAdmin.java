@@ -39,6 +39,8 @@ import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
+import util.Constantes;
+import util.Mensajes;
 import modeloDatos.Viaje;
 
 
@@ -69,14 +71,13 @@ public class VisualizarInfoAdmin {
 		//login_admin();
 	}
 	
-	@Ignore
 	@Test
 	public void sin_chofer_seleccionado() {
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_DE_CHOFER");
-		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_CHOFER");
-		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "SUELDO_DE_CHOFER");
+		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_DE_CHOFER);
+		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_CHOFER);
+		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.SUELDO_DE_CHOFER);
 		
 		/*
 		JList<Cliente> listado_clientes = (JList<Cliente>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTADO_DE_CLIENTES");
@@ -89,20 +90,20 @@ public class VisualizarInfoAdmin {
 		assertTrue("la calificacion del chofer debe esta vacia",calificacion_chofer.getText().isEmpty());
 		assertTrue("el sueldo del chofer debe esta vacio",sueldo_chofer.getText().isEmpty());
 	}
-	@Ignore
+
 	@Test
-	public void con_chofer_seleccionado_sin_viajes_realizados() {
+	public void con_chofer_seleccionado_sin_viajes_realizados() throws ChoferRepetidoException {
 		agregar_choferes();
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
 		this.controlador.getVista().actualizar();
 		robot.delay(TestUtils.getDelay());
-		JList<Chofer> lista_choferes_totales = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_TOTALES");
+		JList<Chofer> lista_choferes_totales = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
 
-		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_DE_CHOFER");
-		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_CHOFER");
-		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "SUELDO_DE_CHOFER");
+		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_DE_CHOFER);
+		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_CHOFER);
+		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.SUELDO_DE_CHOFER);
 		
 		assertEquals("la cantidad de choferes debe ser 4",4,lista_choferes_totales.getModel().getSize());
 		robot.delay(TestUtils.getDelay());
@@ -113,9 +114,9 @@ public class VisualizarInfoAdmin {
 		assertEquals("la calificacion del chofer debe ser 0.0",0.0,Double.parseDouble(calificacion_chofer.getText()),0.1);
 		assertEquals("el sueldo del chofer no es el correcto",this.chofer1.getSueldoNeto(),Double.parseDouble(sueldo_chofer.getText()),1.0);
 	}
-	@Ignore
+
 	@Test
-	public void con_chofer_seleccionado_con_viajes_realizados() {
+	public void con_chofer_seleccionado_con_viajes_realizados() throws ChoferRepetidoException, UsuarioYaExisteException, UsuarioNoExisteException, PasswordErroneaException, VehiculoRepetidoException, PedidoInexistenteException, ChoferNoDisponibleException, VehiculoNoDisponibleException, VehiculoNoValidoException, ClienteConViajePendienteException, SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConPedidoPendienteException, ClienteSinViajePendienteException {
 		robot.delay(TestUtils.getDelay());
 		agregar_choferes();
 		robot.delay(TestUtils.getDelay());
@@ -126,11 +127,11 @@ public class VisualizarInfoAdmin {
 		login_admin();
 		robot.delay(TestUtils.getDelay());
 		
-		JList<Chofer> lista_choferes_totales = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_TOTALES");
+		JList<Chofer> lista_choferes_totales = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
 
-		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_DE_CHOFER");
-		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CALIFICACION_CHOFER");
-		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "SUELDO_DE_CHOFER");
+		JList<Viaje> lista_viajes_chofer = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_DE_CHOFER);
+		JTextField calificacion_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_CHOFER);
+		JTextField sueldo_chofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.SUELDO_DE_CHOFER);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickear_jlist(lista_choferes_totales,3,robot);
@@ -146,24 +147,23 @@ public class VisualizarInfoAdmin {
 		assertNotEquals("no muestra correctamente la puntuacion del chofer",0.0,Double.parseDouble(calificacion_chofer.getText()),0.1);
 		assertEquals("no muestra correctamente el sueldo del chofer",this.chofer3.getSueldoNeto(),Double.parseDouble(sueldo_chofer.getText()),1.0);
 	}
-	@Ignore
+
 	@Test
 	public void listado_clientes_vacio() {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Cliente> listado_clientes = (JList<Cliente>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTADO_DE_CLIENTES");
+		JList<Cliente> listado_clientes = (JList<Cliente>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTADO_DE_CLIENTES);
 		assertEquals("el listado debe estar vacio",0,listado_clientes.getModel().getSize());
 	}
 	
-	@Ignore
 	@Test
-	public void listado_clientes_no_vacio() {
+	public void listado_clientes_no_vacio() throws UsuarioYaExisteException {
 		robot.delay(TestUtils.getDelay());
 		agregar_clientes();
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Cliente> listado_clientes = (JList<Cliente>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTADO_DE_CLIENTES");
+		JList<Cliente> listado_clientes = (JList<Cliente>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTADO_DE_CLIENTES);
 		assertEquals("el listado debe contener los 3 clientes registrados",3,listado_clientes.getModel().getSize());
 		//no estan ordenados como son ingresados
 		/*assertEquals("el nombre de usuario no coincide","dasdas",listado_clientes.getModel().getElementAt(0).getNombreUsuario());
@@ -174,163 +174,133 @@ public class VisualizarInfoAdmin {
 		assertEquals("la password no coincide","rrpp",listado_clientes.getModel().getElementAt(2).getPass());*/
 	}
 	
-	@Ignore
 	@Test
 	public void listado_vehiculos_vacio() {
 		robot.delay(TestUtils.getDelay());
 		//agregar_vehiculos();
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Vehiculo> listado_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JList<Vehiculo> listado_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		assertEquals("el listado debe estar vacio",0,listado_vehiculos.getModel().getSize());
 	}
 	
-	@Ignore
 	@Test
-	public void listado_vehiculos_no_vacio() {
+	public void listado_vehiculos_no_vacio() throws VehiculoRepetidoException {
 		robot.delay(TestUtils.getDelay());
 		agregar_vehiculos();
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Vehiculo> listado_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VEHICULOS_TOTALES");
+		JList<Vehiculo> listado_vehiculos = (JList<Vehiculo>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
 		assertEquals("el listado debe contener los 2 vehiculos registrados",2,listado_vehiculos.getModel().getSize());
 		assertEquals("no coincide la patente del moto",this.moto.getPatente(),listado_vehiculos.getModel().getElementAt(0).getPatente());
 		assertEquals("no coincide la patente del auto",this.auto.getPatente(),listado_vehiculos.getModel().getElementAt(1).getPatente());
 	}
 	
-	@Ignore
 	@Test
 	public void listado_viajes_vacio() {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Viaje> listado_viajes = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_HISTORICOS");
+		JList<Viaje> listado_viajes = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_HISTORICOS);
 		assertEquals("el listado de viajes debe estar vacio",0,listado_viajes.getModel().getSize());
 	}
-	@Ignore
+
 	@Test
-	public void listado_viajes_no_vacio() {
+	public void listado_viajes_no_vacio() throws UsuarioYaExisteException, ChoferRepetidoException, UsuarioNoExisteException, PasswordErroneaException, VehiculoRepetidoException, PedidoInexistenteException, ChoferNoDisponibleException, VehiculoNoDisponibleException, VehiculoNoValidoException, ClienteConViajePendienteException, SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConPedidoPendienteException, ClienteSinViajePendienteException {
 		robot.delay(TestUtils.getDelay());
 		agregar_viajes();
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Viaje> listado_viajes = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_VIAJES_HISTORICOS");
+		JList<Viaje> listado_viajes = (JList<Viaje>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_HISTORICOS);
 		assertEquals("el listado debe contener los 3 viajes registrados",3,listado_viajes.getModel().getSize());
 	}
 	
-	@Ignore
 	@Test
 	public void sueldos_a_pagar_sin_choferes() {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JTextField sueldos_a_pagar = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "TOTAL_SUELDOS_A_PAGAR");
+		JTextField sueldos_a_pagar = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.TOTAL_SUELDOS_A_PAGAR);
 		assertEquals("la cantida de sueldos a pagar debe ser 0",0,Double.parseDouble(sueldos_a_pagar.getText()),0.1);
 	}
 	
 	@Test
-	public void sueldos_a_pagar_con_choferes() {
+	public void sueldos_a_pagar_con_choferes() throws ChoferRepetidoException {
 		robot.delay(TestUtils.getDelay());
 		agregar_choferes();
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JTextField sueldos_a_pagar = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "TOTAL_SUELDOS_A_PAGAR");
+		JTextField sueldos_a_pagar = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.TOTAL_SUELDOS_A_PAGAR);
 		assertNotEquals("la cantida de sueldos a pagar debe ser distinto de 0",0,Double.parseDouble(sueldos_a_pagar.getText()),0.1);
 	}
 	
-	public void agregar_vehiculos() {
+	public void agregar_vehiculos() throws VehiculoRepetidoException {
 		this.auto = new Auto("asd389",3,true);
 		this.moto = new Moto("shak223");
-		try {
-			Empresa.getInstance().agregarVehiculo(auto);
-			Empresa.getInstance().agregarVehiculo(moto);
-		} catch (VehiculoRepetidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Empresa.getInstance().agregarVehiculo(auto);
+		Empresa.getInstance().agregarVehiculo(moto);
 	}
 	
-	public void agregar_choferes() {
+	public void agregar_choferes() throws ChoferRepetidoException {
 		this.chofer1 = new ChoferTemporario("123123","checho perez");
 		this.chofer2 = new ChoferTemporario("1598","leclerc");
 		this.chofer3 = new ChoferPermanente("8323","marcelo",2020,3);
 		this.chofer4 = new ChoferPermanente("7474","roberto",2019,8);
-		try {
-			Empresa.getInstance().agregarChofer(chofer1);
-			Empresa.getInstance().agregarChofer(chofer2);
-			Empresa.getInstance().agregarChofer(chofer3);
-			Empresa.getInstance().agregarChofer(chofer4);
-		} catch (ChoferRepetidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Empresa.getInstance().agregarChofer(chofer1);
+		Empresa.getInstance().agregarChofer(chofer2);
+		Empresa.getInstance().agregarChofer(chofer3);
+		Empresa.getInstance().agregarChofer(chofer4);
 	}
 	
-	public void agregar_clientes() {
-		try {
-			Empresa.getInstance().agregarCliente("patriciorey", "rrpp", "carlos alberto");
-			Empresa.getInstance().agregarCliente("iweudas", "1232", "gustavo");
-			Empresa.getInstance().agregarCliente("dasdas", "214231", "elias gomez");
-		} catch (UsuarioYaExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void agregar_clientes() throws UsuarioYaExisteException {
+		Empresa.getInstance().agregarCliente("patriciorey", "rrpp", "carlos alberto");
+		Empresa.getInstance().agregarCliente("iweudas", "1232", "gustavo");
+		Empresa.getInstance().agregarCliente("dasdas", "214231", "elias gomez");
 	}
 	
-	public void agregar_viajes() {
-		try {
-			Empresa.getInstance().agregarCliente("pepe1", "123", "pepe cibrian");
-		} catch (UsuarioYaExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().login("pepe1", "123");
-		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void agregar_viajes() throws UsuarioYaExisteException, ChoferRepetidoException, UsuarioNoExisteException, PasswordErroneaException, VehiculoRepetidoException, PedidoInexistenteException, ChoferNoDisponibleException, VehiculoNoDisponibleException, VehiculoNoValidoException, ClienteConViajePendienteException, SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConPedidoPendienteException, ClienteSinViajePendienteException {
+		Empresa.getInstance().agregarCliente("pepe1", "123", "pepe cibrian");
+		Empresa.getInstance().login("pepe1", "123");
 		
 		this.cliente_logeado = (Cliente) Empresa.getInstance().getUsuarioLogeado();
 		agregar_choferes();
 		agregar_vehiculos();
 		
-		this.pedido1 = new Pedido(this.cliente_logeado,1,false,false,5,"ZONA_SIN_ASFALTAR");
-		this.pedido2 = new Pedido(this.cliente_logeado,2,true,false,10,"ZONA_STANDARD");
-		this.pedido3 = new Pedido(this.cliente_logeado,3,true,true,7,"ZONA_PELIGROSA");
-		try {
-			Empresa.getInstance().agregarPedido(pedido1);
-			Empresa.getInstance().crearViaje(pedido1, this.chofer3, moto);
-			Empresa.getInstance().pagarYFinalizarViaje(3);
-			Empresa.getInstance().agregarPedido(pedido2);
-			Empresa.getInstance().crearViaje(pedido2, this.chofer3, auto);
-			Empresa.getInstance().pagarYFinalizarViaje(4);
-			Empresa.getInstance().agregarPedido(pedido3);
-			Empresa.getInstance().crearViaje(pedido3, this.chofer3, auto);
-			Empresa.getInstance().pagarYFinalizarViaje(2);
-		} catch (ClienteConViajePendienteException | SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConPedidoPendienteException | PedidoInexistenteException | ChoferNoDisponibleException | VehiculoNoDisponibleException | VehiculoNoValidoException | ClienteSinViajePendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pedido1 = new Pedido(this.cliente_logeado,1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
+		this.pedido2 = new Pedido(this.cliente_logeado,2,true,false,10,Constantes.ZONA_STANDARD);
+		this.pedido3 = new Pedido(this.cliente_logeado,3,true,true,7,Constantes.ZONA_PELIGROSA);
+		
+		Empresa.getInstance().agregarPedido(pedido1);
+		Empresa.getInstance().crearViaje(pedido1, this.chofer3, moto);
+		Empresa.getInstance().pagarYFinalizarViaje(3);
+		Empresa.getInstance().agregarPedido(pedido2);
+		Empresa.getInstance().crearViaje(pedido2, this.chofer3, auto);
+		Empresa.getInstance().pagarYFinalizarViaje(4);
+		Empresa.getInstance().agregarPedido(pedido3);
+		Empresa.getInstance().crearViaje(pedido3, this.chofer3, auto);
+		Empresa.getInstance().pagarYFinalizarViaje(2);
+
 		Empresa.getInstance().logout();
 		robot.delay(TestUtils.getDelay());
 	}
 	
 	public void login_admin() {
 		robot.delay(TestUtils.getDelay());
-		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "NOMBRE_USUARIO");
-		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PASSWORD");
+		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
 		TestUtils.clickComponent(nombre, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		TestUtils.clickComponent(password, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		robot.delay(TestUtils.getDelay());
-		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "LOGIN");
+		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
 		TestUtils.clickComponent(boton_login, robot);
 	}
 
 	@After
 	public void limpio() {
+		Empresa.getInstance().getViajesIniciados().clear();
+		Empresa.getInstance().getViajesTerminados().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculos().clear();

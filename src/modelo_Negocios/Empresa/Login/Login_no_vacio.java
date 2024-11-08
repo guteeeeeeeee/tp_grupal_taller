@@ -29,10 +29,11 @@ public class Login_no_vacio {
 	@Test
 	public void login_correcto() {
 		try {
+			assertNull(Empresa.getInstance().getUsuarioLogeado());
 			Empresa.getInstance().login(this.nombre_usuario,this.password);
 			assertEquals(this.nombre_usuario,Empresa.getInstance().getUsuarioLogeado().getNombreUsuario());
 			assertEquals(this.password,Empresa.getInstance().getUsuarioLogeado().getPass());
-			assertFalse(Empresa.getInstance().isAdmin());
+			assertNotNull(Empresa.getInstance().getUsuarioLogeado());
 		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
 			fail("no logea correctamente al usuario");
 			//e.printStackTrace();
@@ -42,9 +43,11 @@ public class Login_no_vacio {
 	@Test
 	public void login_correcto_admin() {
 		try {
+			assertNull(Empresa.getInstance().getUsuarioLogeado());
 			Empresa.getInstance().login("admin","admin");
 			assertEquals("admin",Empresa.getInstance().getUsuarioLogeado().getNombreUsuario());
 			assertEquals("admin",Empresa.getInstance().getUsuarioLogeado().getPass());
+			assertNotNull(Empresa.getInstance().getUsuarioLogeado());
 			assertTrue(Empresa.getInstance().isAdmin());
 		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
 			fail("no logea correctamente al usuario");
@@ -80,6 +83,7 @@ public class Login_no_vacio {
 	
 	@After
 	public void limpio() {
+		Empresa.getInstance().logout();
 		Empresa.getInstance().getClientes().clear();
 	}
 

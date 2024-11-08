@@ -17,6 +17,7 @@ import excepciones.VehiculoNoValidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class CrearViaje_sin_pedidos {
@@ -51,7 +52,7 @@ public class CrearViaje_sin_pedidos {
 
 	@Test
 	public void test_creo_viaje_sin_pedidos() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo1);
 			fail("no tiene que crear el viaje, el hashmap de pedidos esta vacio");

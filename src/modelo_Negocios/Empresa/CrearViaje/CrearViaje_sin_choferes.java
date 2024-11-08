@@ -17,6 +17,7 @@ import excepciones.VehiculoNoValidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class CrearViaje_sin_choferes {
@@ -49,7 +50,7 @@ public class CrearViaje_sin_choferes {
 
 	@Test
 	public void test_creo_viaje_sin_choferes() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido);
 		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException

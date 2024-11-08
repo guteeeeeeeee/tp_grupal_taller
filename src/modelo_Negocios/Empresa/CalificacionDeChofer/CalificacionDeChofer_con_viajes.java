@@ -16,6 +16,7 @@ import excepciones.SinViajesException;
 import excepciones.UsuarioNoExisteException;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class CalificacionDeChofer_con_viajes {
@@ -87,7 +88,7 @@ public class CalificacionDeChofer_con_viajes {
 	public void crea_y_puntua_viaje(Chofer chofer,int calificacion) throws UsuarioNoExisteException, PasswordErroneaException, ClienteSinViajePendienteException {
 		HashMap<Cliente,Viaje> viajes_iniciados = new HashMap<Cliente,Viaje>();
 		Cliente cliente = (Cliente) Empresa.getInstance().login("a", "b");
-		Pedido pedido = new Pedido(cliente,1,false,false,10,"ZONA_SIN_ASFALTAR");
+		Pedido pedido = new Pedido(cliente,1,false,false,10,Constantes.ZONA_SIN_ASFALTAR);
 		Viaje viaje_chofer = new Viaje(pedido,chofer,this.vehiculo);
 		viajes_iniciados.put(cliente, viaje_chofer);
 		Empresa.getInstance().setViajesIniciados(viajes_iniciados);

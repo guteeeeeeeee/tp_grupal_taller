@@ -16,6 +16,8 @@ import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class CalificarPagar {
@@ -32,7 +34,7 @@ public class CalificarPagar {
 		Empresa.getInstance().agregarChofer(chofer);
 		Vehiculo moto = new Moto("mmm111");
 		Empresa.getInstance().agregarVehiculo(moto);
-		Pedido pedido = new Pedido(user_logeado,1,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(user_logeado,1,false,false,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(pedido);
 		
 		Empresa.getInstance().crearViaje(pedido, chofer, moto);

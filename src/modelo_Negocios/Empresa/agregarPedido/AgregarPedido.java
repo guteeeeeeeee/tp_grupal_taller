@@ -13,6 +13,7 @@ import excepciones.SinVehiculoParaPedidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
@@ -43,7 +44,7 @@ public class AgregarPedido {
 		this.auto = new Auto("aaa111",3,true);
 		Empresa.getInstance().agregarVehiculo(auto);
 		
-		this.pedido1 = new Pedido(this.user2,1,false,false,5,"ZONA_STANDARD");
+		this.pedido1 = new Pedido(this.user2,1,false,false,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(this.pedido1);
 	}
 	
@@ -53,7 +54,7 @@ public class AgregarPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 10;
-		String zona = "ZONA_STANDARD";
+		String zona = Constantes.ZONA_STANDARD;
 		Pedido pedido_nuevo = new Pedido(this.user1,cant_pasajeros,mascota,baul,cant_km,zona);
 		try {
 			assertEquals(1,Empresa.getInstance().getPedidos().size());
@@ -75,7 +76,7 @@ public class AgregarPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 10;
-		String zona = "ZONA_STANDARD";
+		String zona = Constantes.ZONA_STANDARD;
 		Pedido pedido_nuevo = new Pedido(this.user1,cant_pasajeros,mascota,baul,cant_km,zona);
 		try {
 			assertEquals(1,Empresa.getInstance().getPedidos().size());
@@ -96,7 +97,7 @@ public class AgregarPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 10;
-		String zona = "ZONA_STANDARD";
+		String zona = Constantes.ZONA_STANDARD;
 		Cliente cliente_nuevo = new Cliente("zzz","aaa","no registrado");
 		Pedido pedido_nuevo = new Pedido(cliente_nuevo,cant_pasajeros,mascota,baul,cant_km,zona);
 		try {
@@ -118,7 +119,7 @@ public class AgregarPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 10;
-		String zona = "ZONA_STANDARD";
+		String zona = Constantes.ZONA_STANDARD;
 		Pedido pedido_nuevo = new Pedido(this.user2,cant_pasajeros,mascota,baul,cant_km,zona);
 		try {
 			assertEquals(1,Empresa.getInstance().getPedidos().size());

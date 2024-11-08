@@ -18,6 +18,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import controlador.Controlador;
+import util.Constantes;
+import util.Mensajes;
 import excepciones.UsuarioYaExisteException;
 import excepciones.VehiculoRepetidoException;
 import modeloNegocio.Empresa;
@@ -53,15 +55,15 @@ public class CrearPedido {
 	@Test
 	public void cant_pax_1() { //tienen que ser 1 pasajero, 10 pasajeros o 0 km
 		robot.delay(TestUtils.getDelay());
-		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_PAX");
-		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_KM");
+		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
 		
-		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "ZONA_SIN_ASFALTAR");
+		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
 		
-		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_MASCOTA");
-		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_BAUL");
+		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
 		
-		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_PEDIDO");
+		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(text_cant_pax, robot);
@@ -76,18 +78,19 @@ public class CrearPedido {
 		TestUtils.clickComponent(check_baul, robot);
 		assertTrue("el boton de generar nuevo pedido deberia estar habilitado",nuevo_pedido.isEnabled());
 	}
+	
 	@Test
 	public void cant_pax_10() { //tienen que ser 1 pasajero, 10 pasajeros o 0 km
 		robot.delay(TestUtils.getDelay());
-		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_PAX");
-		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_KM");
+		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
 		
-		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "ZONA_SIN_ASFALTAR");
+		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
 		
-		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_MASCOTA");
-		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_BAUL");
+		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
 		
-		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_PEDIDO");
+		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(text_cant_pax, robot);
@@ -106,15 +109,15 @@ public class CrearPedido {
 	@Test
 	public void cant_km_0() { //tienen que ser 1 pasajero, 10 pasajeros o 0 km
 		robot.delay(TestUtils.getDelay());
-		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_PAX");
-		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_KM");
+		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
 		
-		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "ZONA_SIN_ASFALTAR");
+		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
 		
-		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_MASCOTA");
-		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_BAUL");
+		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
 		
-		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_PEDIDO");
+		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(text_cant_pax, robot);
@@ -129,6 +132,7 @@ public class CrearPedido {
 		TestUtils.clickComponent(check_baul, robot);
 		assertTrue("el boton de generar nuevo pedido deberia estar habilitado",nuevo_pedido.isEnabled());
 	}
+	
 	@Test
 	public void pedido_con_vehiculo_disponible() {
 		Vehiculo moto = new Moto("aaa111");
@@ -139,15 +143,15 @@ public class CrearPedido {
 			e.printStackTrace();
 		}
 		robot.delay(TestUtils.getDelay());
-		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_PAX");
-		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_KM");
+		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
 		
-		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "ZONA_SIN_ASFALTAR");
+		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
 		
-		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_MASCOTA");
-		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_BAUL");
+		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
 		
-		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_PEDIDO");
+		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(text_cant_pax, robot);
@@ -161,21 +165,22 @@ public class CrearPedido {
 		TestUtils.clickComponent(nuevo_pedido, robot);
 		assertTrue("se deberia haber borrado el text field de cant pasajeros",text_cant_pax.getText().isEmpty());
 		assertTrue("se deberia haber borrado el text field de cant km",text_cant_pax.getText().isEmpty());
-		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), "PEDIDO_O_VIAJE_ACTUAL");
+		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
 		assertFalse("la lista de viajes realizados no deberia estar vacia",text_viajes_realizados.getText().isEmpty());
 	}
+	
 	@Test
 	public void pedido_sin_vehiculo_disponible() {
 		robot.delay(TestUtils.getDelay());
-		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_PAX");
-		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "CANT_KM");
+		JTextField text_cant_pax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+		JTextField text_cant_km = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
 		
-		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), "ZONA_SIN_ASFALTAR");
+		JRadioButton zona_peligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
 		
-		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_MASCOTA");
-		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), "CHECK_BAUL");
+		JCheckBox check_mascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+		JCheckBox check_baul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
 		
-		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "NUEVO_PEDIDO");
+		JButton nuevo_pedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
 		
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(text_cant_pax, robot);
@@ -189,21 +194,21 @@ public class CrearPedido {
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(check_baul, robot);
 		TestUtils.clickComponent(nuevo_pedido, robot);
-		assertEquals("deberia decir que no hay vehiculo disponible para el pedido","Ningun vehiculo puede satisfacer el pedido",op.getMensaje());
-		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), "PEDIDO_O_VIAJE_ACTUAL");
+		assertEquals("deberia decir que no hay vehiculo disponible para el pedido",Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),op.getMensaje());
+		JTextArea text_viajes_realizados = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
 		assertTrue("la lista de viajes realizados deberia estar vacia",text_viajes_realizados.getText().isEmpty());
 	}
 	
 	public void login_usuario() {
 		robot.delay(TestUtils.getDelay());
-		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "NOMBRE_USUARIO");
-		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PASSWORD");
+		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
 		TestUtils.clickComponent(nombre, this.robot);
 		TestUtils.tipeaTexto(this.nombre_usuario,this.robot);
 		TestUtils.clickComponent(password, this.robot);
 		TestUtils.tipeaTexto(this.password,this.robot);
 		robot.delay(TestUtils.getDelay());
-		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "LOGIN");
+		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
 		TestUtils.clickComponent(boton_login, robot);
 	}
 	

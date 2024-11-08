@@ -13,6 +13,8 @@ import controlador.Controlador;
 import modeloDatos.Auto;
 import modeloNegocio.Empresa;
 import testeo_gui.FalsoOptionPane;
+import util.Constantes;
+import util.Mensajes;
 import vista.IVista;
 import vista.Ventana;
 
@@ -37,7 +39,7 @@ public class NuevoVehiculo_con_auto_cargado {
 	@Test
 	public void test_agregar_nuevo_vehiculo_con_auto_cargado() {
 		String patente = "aaa111";
-		String tipo = "AUTO";
+		String tipo = Constantes.AUTO;
 		when(this.vista_mock.getTipoVehiculo()).thenReturn(tipo);
 		when(this.vista_mock.getPatente()).thenReturn(patente);
 		when(this.vista_mock.getPlazas()).thenReturn(4);
@@ -54,14 +56,14 @@ public class NuevoVehiculo_con_auto_cargado {
 	@Test
 	public void test_agregar_nuevo_vehiculo_con_patente_ya_cargada() {
 		String patente = "bbb222";
-		String tipo = "COMBI";
+		String tipo = Constantes.COMBI;
 		when(this.vista_mock.getTipoVehiculo()).thenReturn(tipo);
 		when(this.vista_mock.getPatente()).thenReturn(patente);
 		when(this.vista_mock.getPlazas()).thenReturn(10);
 		when(this.vista_mock.isPedidoConMascota()).thenReturn(false);
 		assertEquals(1,Empresa.getInstance().getVehiculos().size());
 		this.controlador.nuevoVehiculo();
-		assertEquals("Vehiculo ya Registrado",this.op.getMensaje());
+		assertEquals("no dice que el Vehiculo ya esta Registrado",Mensajes.VEHICULO_YA_REGISTRADO.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getVehiculos().size());
 	}
 	

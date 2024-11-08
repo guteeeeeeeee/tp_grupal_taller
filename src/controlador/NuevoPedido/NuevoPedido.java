@@ -14,6 +14,8 @@ import controlador.Controlador;
 import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
 import testeo_gui.FalsoOptionPane;
+import util.Constantes;
+import util.Mensajes;
 import vista.IVista;
 import vista.Ventana;
 import modeloDatos.*;
@@ -45,7 +47,7 @@ public class NuevoPedido {
 		Cliente viajante = (Cliente) Empresa.getInstance().login("alfa", "123");
 		Empresa.getInstance().logout();
 		
-		this.pedido = new Pedido(viajante,1,false,false,5,"ZONA_PELIGROSA");
+		this.pedido = new Pedido(viajante,1,false,false,5,Constantes.ZONA_PELIGROSA);
 		Empresa.getInstance().agregarPedido(pedido);
 		
 		this.vista_mock = mock(Ventana.class);
@@ -62,7 +64,7 @@ public class NuevoPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 5;
-		String tipo_zona = "ZONA_PELIGROSA";
+		String tipo_zona = Constantes.ZONA_PELIGROSA;
 		
 		Cliente usuario_actual = (Cliente) Empresa.getInstance().login("pepe123", "123");
 		when(this.vista_mock.getCantidadPax()).thenReturn(cant_pax);
@@ -87,7 +89,7 @@ public class NuevoPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 5;
-		String tipo_zona = "ZONA_PELIGROSA";
+		String tipo_zona = Constantes.ZONA_PELIGROSA;
 		
 		Cliente usuario_actual = (Cliente) Empresa.getInstance().login("pepe123", "123");
 		when(this.vista_mock.getCantidadPax()).thenReturn(cant_pax);
@@ -98,7 +100,7 @@ public class NuevoPedido {
 		
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 		this.controlador.nuevoPedido();
-		assertEquals("Ningun vehiculo puede satisfacer el pedido",this.op.getMensaje());
+		assertEquals("no dice que ningun vehiculo puede satisfacer el pedido",Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 	}
 	
@@ -108,7 +110,7 @@ public class NuevoPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 5;
-		String tipo_zona = "ZONA_PELIGROSA";
+		String tipo_zona = Constantes.ZONA_PELIGROSA;
 		
 		Cliente usuario_actual = (Cliente) Empresa.getInstance().login("alfa", "123");
 		when(this.vista_mock.getCantidadPax()).thenReturn(cant_pax);
@@ -119,7 +121,7 @@ public class NuevoPedido {
 		
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 		this.controlador.nuevoPedido();
-		assertEquals("Cliente con pedido pendiente",this.op.getMensaje());
+		assertEquals("no dice que el cliente tiene pedido pendiente",Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 	}
 	
@@ -129,7 +131,7 @@ public class NuevoPedido {
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 5;
-		String tipo_zona = "ZONA_PELIGROSA";
+		String tipo_zona = Constantes.ZONA_PELIGROSA;
 		
 		Cliente usuario_inexistente = new Cliente("zzz333","123","no existe");
 		Empresa.getInstance().setUsuarioLogeado(usuario_inexistente);
@@ -142,7 +144,7 @@ public class NuevoPedido {
 		
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 		this.controlador.nuevoPedido();
-		assertEquals("EL Cliente no esta registrado",this.op.getMensaje());
+		assertEquals("no dice que el cliente no esta registrado",Mensajes.CLIENTE_NO_EXISTE.getValor(),this.op.getMensaje());
 		assertEquals(1,Empresa.getInstance().getPedidos().size());
 	}
 	

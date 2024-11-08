@@ -34,6 +34,7 @@ import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
@@ -70,7 +71,7 @@ public class GestionPedidos {
 	public void pedidos_pendientes_vacia() {
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_PEDIDOS_PENDIENTES");
+		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
 		assertEquals("la lista de pedidos pendientes debe estar vacia",0,lista_pedidos_pendientes.getModel().getSize());
 	}
 	
@@ -81,7 +82,7 @@ public class GestionPedidos {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_PEDIDOS_PENDIENTES");
+		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
 		assertEquals("la lista de pedidos pendientes debe tener los 2 pedidos pendientes",2,lista_pedidos_pendientes.getModel().getSize());
 		assertEquals("el cliente del pedido pendiente no coincide",this.pedido1.getCliente(),lista_pedidos_pendientes.getModel().getElementAt(0).getCliente());
 		assertEquals("la cant de pasajeros del pedido pendiente no coincide",this.pedido1.getCantidadPasajeros(),lista_pedidos_pendientes.getModel().getElementAt(0).getCantidadPasajeros());
@@ -94,7 +95,7 @@ public class GestionPedidos {
 	public void lista_choferes_libres_vacia() {
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Chofer> lista_choferes_libres = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_LIBRES");
+		JList<Chofer> lista_choferes_libres = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
 		assertEquals("la cantidad de choferes libres debe ser 0",0,lista_choferes_libres.getModel().getSize());
 	}
 	
@@ -105,7 +106,7 @@ public class GestionPedidos {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Chofer> lista_choferes_libres = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_LIBRES");
+		JList<Chofer> lista_choferes_libres = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
 		assertEquals("la cantidad de choferes libres debe ser 4",4,lista_choferes_libres.getModel().getSize());
 	}
 	
@@ -116,7 +117,7 @@ public class GestionPedidos {
 		robot.delay(TestUtils.getDelay());
 		login_admin();
 		robot.delay(TestUtils.getDelay());
-		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_PEDIDOS_PENDIENTES");
+		JList<Pedido> lista_pedidos_pendientes = (JList<Pedido>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
 		//JList<Chofer> lista_choferes_libres = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_LIBRES");
 		//JList<Chofer> lista_choferes_totales = (JList<Chofer>) TestUtils.getComponentForName((Component) controlador.getVista(), "LISTA_CHOFERES_TOTALES");
 
@@ -132,7 +133,7 @@ public class GestionPedidos {
 		//TestUtils.clickear_jlist(lista_choferes_totales, 0, robot);
 		//TestUtils.clickear_jlist(lista_choferes_libres, 0, robot);
 //		assertFalse("el boton para iniciar nuevo viaje no deberia estar disponible",boton_nuevo_viaje.isEnabled());
-		robot.delay(20000);
+		robot.delay(TestUtils.getDelay());
 //		robot.delay(TestUtils.getDelay());
 //		TestUtils.clickear_jlist(lista_vehiculos_disponibles, 0, robot);
 //		assertTrue("el boton para iniciar nuevo viaje deberia estar disponible",boton_nuevo_viaje.isEnabled());
@@ -179,8 +180,8 @@ public class GestionPedidos {
 		agregar_choferes();
 		agregar_vehiculos();
 		
-		this.pedido1 = new Pedido(clientes.get("pepe1"),1,false,false,5,"ZONA_SIN_ASFALTAR");
-		this.pedido2 = new Pedido(clientes.get("tutu"),2,true,false,10,"ZONA_STANDARD");
+		this.pedido1 = new Pedido(clientes.get("pepe1"),1,false,false,5,Constantes.ZONA_SIN_ASFALTAR);
+		this.pedido2 = new Pedido(clientes.get("tutu"),2,true,false,10,Constantes.ZONA_STANDARD);
 		try {
 			Empresa.getInstance().agregarPedido(pedido1);
 			Empresa.getInstance().agregarPedido(pedido2);
@@ -193,14 +194,14 @@ public class GestionPedidos {
 	
 	public void login_admin() {
 		robot.delay(TestUtils.getDelay());
-		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "NOMBRE_USUARIO");
-		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), "PASSWORD");
+		JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
 		TestUtils.clickComponent(nombre, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		TestUtils.clickComponent(password, this.robot);
 		TestUtils.tipeaTexto("admin",this.robot);
 		robot.delay(TestUtils.getDelay());
-		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), "LOGIN");
+		JButton boton_login = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
 		TestUtils.clickComponent(boton_login, robot);
 	}
 

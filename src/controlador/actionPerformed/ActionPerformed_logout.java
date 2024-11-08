@@ -21,6 +21,8 @@ import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
+import util.Constantes;
+import util.Mensajes;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
 import vista.Ventana;
@@ -55,7 +57,8 @@ public class ActionPerformed_logout {
 		Cliente log_sistema;
 		Cliente logeado = (Cliente) Empresa.getInstance().login(nombre_usuario, password);
 		ActionEvent mockEvent = mock(ActionEvent.class);
-		when(mockEvent.getActionCommand()).thenReturn("CERRAR_SESION_CLIENTE");
+		when(mockEvent.getActionCommand()).thenReturn(Constantes.CERRAR_SESION_CLIENTE);
+		
 		log_sistema = (Cliente) Empresa.getInstance().getUsuarioLogeado();
 		assertEquals(logeado.getNombreUsuario(),log_sistema.getNombreUsuario());
 		this.controlador.actionPerformed(mockEvent);
@@ -68,8 +71,9 @@ public class ActionPerformed_logout {
 		Administrador admin_logeado = (Administrador) Empresa.getInstance().login("admin", "admin");
 		ActionEvent mockEvent = mock(ActionEvent.class);
 		Administrador logeado = (Administrador) Empresa.getInstance().getUsuarioLogeado();
+		when(mockEvent.getActionCommand()).thenReturn(Constantes.CERRAR_SESION_ADMIN);
+		
 		assertEquals(admin_logeado.getNombreUsuario(),logeado.getNombreUsuario());
-		when(mockEvent.getActionCommand()).thenReturn("CERRAR_SESION_ADMIN");
 		this.controlador.actionPerformed(mockEvent);
 		logeado = (Administrador) Empresa.getInstance().getUsuarioLogeado();
 		assertNull(logeado);

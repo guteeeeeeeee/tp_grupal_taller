@@ -18,6 +18,8 @@ import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 import testeo_gui.FalsoOptionPane;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class CalificacionPagar_no_viaje {
@@ -35,7 +37,7 @@ public class CalificacionPagar_no_viaje {
 		Empresa.getInstance().agregarChofer(chofer);
 		Vehiculo moto = new Moto("mmm111");
 		Empresa.getInstance().agregarVehiculo(moto);
-		Pedido pedido = new Pedido(user_logeado,1,false,false,5,"ZONA_STANDARD");
+		Pedido pedido = new Pedido(user_logeado,1,false,false,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(pedido);
 		
 		Empresa.getInstance().crearViaje(pedido, chofer, moto);
@@ -53,7 +55,8 @@ public class CalificacionPagar_no_viaje {
 	public void test_calificacion_3_en_viaje() throws SinViajesException {
 		assertNotNull(Empresa.getInstance().getViajeDeCliente(this.user_logeado));
 		this.controlador.calificarPagar();
-		assertEquals("Cliente Sin Viaje Pendiente",this.op.getMensaje());
+		assertEquals("no salta error que dice que el cliente no tiene viajes pendientes",Mensajes.CLIENTE_SIN_VIAJE_PENDIENTE.getValor(),this.op.getMensaje());
+
 	}
 
 }

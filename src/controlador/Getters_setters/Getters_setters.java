@@ -11,6 +11,8 @@ import controlador.Controlador;
 import modeloNegocio.Empresa;
 import persistencia.*;
 import vista.IVista;
+import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 public class Getters_setters {

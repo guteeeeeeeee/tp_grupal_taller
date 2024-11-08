@@ -12,6 +12,7 @@ import org.junit.Test;
 import excepciones.ClienteSinViajePendienteException;
 import modeloDatos.Auto;
 import modeloNegocio.Empresa;
+import util.Constantes;
 import modeloDatos.*;
 
 public class PagarYFinalizarViaje_viaje_finalizado {
@@ -33,7 +34,7 @@ public class PagarYFinalizarViaje_viaje_finalizado {
 		Empresa.getInstance().agregarChofer(this.chofer);
 		this.vehiculo = new Auto("pda123",3,true);
 		Empresa.getInstance().agregarVehiculo(this.vehiculo);
-		Pedido pedido_test = new Pedido(this.cliente_logeado,2,false,true,5,"ZONA_STANDARD");
+		Pedido pedido_test = new Pedido(this.cliente_logeado,2,false,true,5,Constantes.ZONA_STANDARD);
 		Empresa.getInstance().agregarPedido(pedido_test);
 		Viaje viaje = new Viaje(pedido_test,this.chofer,this.vehiculo);
 		Empresa.getInstance().crearViaje(pedido_test, this.chofer, this.vehiculo);
@@ -45,10 +46,10 @@ public class PagarYFinalizarViaje_viaje_finalizado {
 		int calificacion = 0;
 		try {				
 			Empresa.getInstance().pagarYFinalizarViaje(calificacion);
-			fail("no debe contiunar, el viaje ya fue finalizado antes");
-			} catch (ClienteSinViajePendienteException e) {
-				//esta ok
-			}
+			fail("no debe continuar, el viaje ya fue finalizado antes");
+		} catch (ClienteSinViajePendienteException e) {
+			//esta ok
+		}
 	}
 	
 	@After
