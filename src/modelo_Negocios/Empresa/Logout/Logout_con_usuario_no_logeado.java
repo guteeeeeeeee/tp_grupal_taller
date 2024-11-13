@@ -17,6 +17,7 @@ public class Logout_con_usuario_no_logeado {
 		String password = "aaa";
 		Empresa.getInstance().agregarCliente(nombre_usuario,password, "user logeado");
 		Empresa.getInstance().login(nombre_usuario, password);
+		Empresa.getInstance().logout();
 	}
 
 	@Test

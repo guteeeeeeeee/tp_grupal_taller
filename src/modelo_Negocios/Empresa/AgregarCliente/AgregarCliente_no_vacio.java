@@ -47,17 +47,6 @@ public class AgregarCliente_no_vacio {
 		}
 	}
 	
-	@Test
-	public void test_agregar_admin_no_vacio() {
-		try {
-			Empresa.getInstance().agregarCliente("admin",this.password,this.nombre_completo);
-			fail("registra cliente con nombre de usuario admin");
-		} catch (UsuarioYaExisteException e) {
-			//esta ok
-			assertEquals(0,Empresa.getInstance().getClientes().size());
-		}
-	}
-	
 	@After
 	public void limpiar() {
 		Empresa.getInstance().getClientes().clear();

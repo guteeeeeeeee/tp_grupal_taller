@@ -87,6 +87,7 @@ public class RegistrarChofer_repetido {
 	@After
 	public void limpio() {
 		Empresa.getInstance().getChoferes().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
 	}
 
 }
