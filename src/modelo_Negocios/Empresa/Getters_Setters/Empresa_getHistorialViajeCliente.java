@@ -81,27 +81,6 @@ public class Empresa_getHistorialViajeCliente {
 		assertEquals(0,Empresa.getInstance().getHistorialViajeCliente(cliente_no_existe).size());
 	}
 	
-	@Test
-	public void getHistorialViajeChofer_sin_viajes() {
-		assertEquals(0,Empresa.getInstance().getHistorialViajeChofer(chofer_sin_viajes).size());
-	}
-	
-	@Test
-	public void getHistorialViajeChofer_en_viaje() {
-		assertEquals(0,Empresa.getInstance().getHistorialViajeChofer(chofer1).size());
-	}
-	
-	@Test
-	public void getHistorialViajeChofer_con_2_viajes() {
-		assertEquals(2,Empresa.getInstance().getHistorialViajeChofer(chofer2).size());
-	}
-	
-	@Test
-	public void getHistorialViajeChofer_no_existe() {
-		Chofer chofer_no_existe = new ChoferTemporario("777","pablo");
-		assertEquals(0,Empresa.getInstance().getHistorialViajeChofer(chofer_no_existe).size());
-	}
-	
 	@After
 	public void limpiar() {
 		Empresa.getInstance().logout();

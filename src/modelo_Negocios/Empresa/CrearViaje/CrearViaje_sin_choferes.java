@@ -14,8 +14,6 @@ import excepciones.PedidoInexistenteException;
 import excepciones.SinVehiculoParaPedidoException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
-import modeloDatos.Auto;
-import modeloDatos.Moto;
 import modeloNegocio.Empresa;
 import util.Constantes;
 import modeloDatos.*;
@@ -27,8 +25,7 @@ public class CrearViaje_sin_choferes {
 	Vehiculo vehiculo1;
 	Vehiculo vehiculo2;
 	Vehiculo vehiculo3;
-	Chofer chofer1;
-	Chofer chofer2;
+	Pedido pedido1;
 	
 	@Before
 	public void setUp() throws Exception {		
@@ -43,34 +40,26 @@ public class CrearViaje_sin_choferes {
 		Empresa.getInstance().agregarVehiculo(this.vehiculo2);
 		this.vehiculo3 = new Moto("ccc111");
 		Empresa.getInstance().agregarVehiculo(this.vehiculo3);
+				
+		this.pedido1 = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().agregarPedido(pedido1);
 		
-		this.chofer1 = new ChoferTemporario("13608188","jorge");
-		this.chofer2 = new ChoferTemporario("111","raul");
+		Pedido pedido2 = new Pedido(this.user2,4,false,false,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().agregarPedido(pedido2);
 	}
 
 	@Test
 	public void test_creo_viaje_sin_choferes() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
+		Chofer chofer = new ChoferTemporario("444","robert");
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo1);
-			fail("no tiene que crear el viaje, el hashmap de choferes esta vacio");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido es inexistente");
-		} catch (ChoferNoDisponibleException e) {
+			Empresa.getInstance().crearViaje(this.pedido1, chofer, this.vehiculo1);
+			fail("crea viaje cuando no tiene ningun chofer registrado");
+		} catch (PedidoInexistenteException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
+		} catch (ChoferNoDisponibleException e) { 
 			//esta ok
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta realizando un viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
@@ -79,6 +68,7 @@ public class CrearViaje_sin_choferes {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getViajesIniciados().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculosDesocupados().clear();
 		Empresa.getInstance().getChoferesDesocupados().clear();

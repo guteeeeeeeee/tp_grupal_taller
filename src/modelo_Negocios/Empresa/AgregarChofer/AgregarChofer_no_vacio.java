@@ -48,9 +48,20 @@ public class AgregarChofer_no_vacio {
 		}
 	}
 	
+	@Test
+	public void test_agregar_chofer_cajablanca_c1(){
+		try {
+			Empresa.getInstance().agregarChofer(chofer);
+			fail("Deberia lanzar excepcion al agregar el mismo objeto chofer en la lista");
+		} catch (ChoferRepetidoException e) {
+			//esta ok
+		}
+	}
+	
 	@After
 	public void limpio() {
 		Empresa.getInstance().getChoferes().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
 	}
 
 }

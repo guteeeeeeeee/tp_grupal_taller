@@ -35,6 +35,7 @@ public class AgregarVehiculo_vacio {
 	@After
 	public void limpiar() {
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 	}
 
 }

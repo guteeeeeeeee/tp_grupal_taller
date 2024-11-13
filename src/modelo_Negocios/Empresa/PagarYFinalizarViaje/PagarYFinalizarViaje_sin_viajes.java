@@ -37,7 +37,7 @@ public class PagarYFinalizarViaje_sin_viajes {
 	
 	@Test
 	public void test_finalizar_sin_viajes() {
-		int calificacion = 0;
+		int calificacion = 3;
 		try {				
 			Empresa.getInstance().pagarYFinalizarViaje(calificacion);
 			fail("debe tirar la excepcion de cliente sin viaje pendiente");

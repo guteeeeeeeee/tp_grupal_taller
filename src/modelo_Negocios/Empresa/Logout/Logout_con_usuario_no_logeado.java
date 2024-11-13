@@ -13,7 +13,10 @@ public class Logout_con_usuario_no_logeado {
 	
 	@Before
 	public void setUp() throws Exception {
-		Empresa.getInstance().agregarCliente("a", "aaa", "user logeado");
+		String nombre_usuario = "a";
+		String password = "aaa";
+		Empresa.getInstance().agregarCliente(nombre_usuario,password, "user logeado");
+		Empresa.getInstance().login(nombre_usuario, password);
 	}
 
 	@Test
@@ -25,6 +28,7 @@ public class Logout_con_usuario_no_logeado {
 	
 	@After
 	public void limpio() {
+		Empresa.getInstance().logout();
 		Empresa.getInstance().getClientes().clear();
 	}
 }

@@ -62,5 +62,6 @@ public class ValidarPedido_combi {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 	}
 }

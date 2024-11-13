@@ -68,6 +68,7 @@ public class ValidarPedido_combi_pet_friendly {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 	}
 
 }

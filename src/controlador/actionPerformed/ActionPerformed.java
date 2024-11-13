@@ -27,8 +27,8 @@ import excepciones.UsuarioYaExisteException;
 import excepciones.VehiculoRepetidoException;
 import modeloNegocio.Empresa;
 import modeloDatos.*;
-import testeo_gui.FalsoOptionPane;
-import testeo_gui.TestUtils;
+import testeo_gui.ayuda.FalsoOptionPane;
+import testeo_gui.ayuda.TestUtils;
 import util.Constantes;
 import util.Mensajes;
 import vista.IVista;
@@ -176,6 +176,45 @@ public class ActionPerformed {
 		assertEquals(0,Empresa.getInstance().getViajesIniciados().size());
 		this.controlador.actionPerformed(mockEvent);
 		assertNotNull(Empresa.getInstance().getViajesIniciados().get(user));
+	}
+	
+	@Test
+	public void test_no_existe() throws UsuarioYaExisteException, ChoferRepetidoException, VehiculoRepetidoException, UsuarioNoExisteException, PasswordErroneaException, SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConViajePendienteException, ClienteConPedidoPendienteException {
+		Empresa.getInstance().agregarCliente("alfa", "aaa", "alfonso");
+		
+		Chofer chofer = new ChoferTemporario("12345","chofer");
+		Empresa.getInstance().agregarChofer(chofer);
+
+		Vehiculo moto = new Moto("mmm111");
+		Empresa.getInstance().agregarVehiculo(moto);
+		
+		Cliente user = (Cliente) Empresa.getInstance().login("alfa","aaa");
+		
+		Pedido pedido = new Pedido(user,1,false,false,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().agregarPedido(pedido);
+		
+		this.controlador = new Controlador();
+		this.controlador.setVista(vista_mock);
+		this.op = new FalsoOptionPane();
+		ActionEvent mockEvent = mock(ActionEvent.class);
+		when(mockEvent.getActionCommand()).thenReturn("funcion_no_existe");
+		when(this.vista_mock.getOptionPane()).thenReturn(op);
+		when(this.vista_mock.getChoferDisponibleSeleccionado()).thenReturn(chofer); //getChoferSeleccionado
+		when(this.vista_mock.getVehiculoDisponibleSeleccionado()).thenReturn(moto); //getVehiculoDisponibleSeleccionado
+		when(this.vista_mock.getPedidoSeleccionado()).thenReturn(pedido); //getPedidoSeleccionado
+		
+		assertNotNull(Empresa.getInstance().getUsuarioLogeado());
+		assertEquals(1,Empresa.getInstance().getPedidos().size());
+		assertEquals(1,Empresa.getInstance().getChoferes().size());
+		assertEquals(1,Empresa.getInstance().getVehiculos().size());
+		assertEquals(0,Empresa.getInstance().getViajesIniciados().size());
+		this.controlador.actionPerformed(mockEvent);
+		//que no cambie nada
+		assertNotNull(Empresa.getInstance().getUsuarioLogeado());
+		assertEquals(1,Empresa.getInstance().getPedidos().size());
+		assertEquals(1,Empresa.getInstance().getChoferes().size());
+		assertEquals(1,Empresa.getInstance().getVehiculos().size());
+		assertEquals(0,Empresa.getInstance().getViajesIniciados().size());
 	}
 	
 	@After

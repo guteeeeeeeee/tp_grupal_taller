@@ -48,6 +48,7 @@ public class ValidarPedido_sin_vehiculos {
 			Empresa.getInstance().getClientes().clear();
 			Empresa.getInstance().getPedidos().clear();
 			Empresa.getInstance().getVehiculos().clear();
+			Empresa.getInstance().getVehiculosDesocupados().clear();
 		}
 
 }

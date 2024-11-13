@@ -16,6 +16,7 @@ import controlador.Controlador;
 import excepciones.SinViajesException;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
+import testeo_gui.ayuda.FalsoOptionPane;
 import modeloDatos.Chofer;
 import util.Constantes;
 import util.Mensajes;
@@ -23,7 +24,6 @@ import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
-import testeo_gui.FalsoOptionPane;
 import vista.IVista;
 import vista.Ventana;
 
@@ -76,7 +76,7 @@ public class ActionPerformed_pagar_finalizar_viaje {
 		assertEquals(0,Empresa.getInstance().calificacionDeChofer(chofer),0.1);
 		this.controlador.actionPerformed(mockEvent);
 		assertEquals(0,Empresa.getInstance().getViajesIniciados().size());
-		assertEquals(calificacion,Empresa.getInstance().calificacionDeChofer(chofer),0.1); //no actualiza la calificacion del chofer !!
+		assertEquals("no actualiza la calificacion del chofer",calificacion,Empresa.getInstance().calificacionDeChofer(chofer),0.1);
 	}
 	
 	@After

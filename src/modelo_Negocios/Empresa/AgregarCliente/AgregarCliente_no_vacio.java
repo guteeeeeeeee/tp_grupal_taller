@@ -33,7 +33,7 @@ public class AgregarCliente_no_vacio {
 	}
 	
 	@Test
-	public void test_agregar_cliente() {
+	public void test_agregar_cliente_no_vacio() {
 		String nombre_usuario = "b";
 		String pass = "b";
 		String nombre = "carlos";
@@ -44,6 +44,17 @@ public class AgregarCliente_no_vacio {
 			assertEquals(nombre,Empresa.getInstance().getClientes().get(nombre_usuario).getNombreReal());
 		} catch (UsuarioYaExisteException e) {
 			fail("tiro excepcion de que el usuario esta repetido cuando no es asi");
+		}
+	}
+	
+	@Test
+	public void test_agregar_admin_no_vacio() {
+		try {
+			Empresa.getInstance().agregarCliente("admin",this.password,this.nombre_completo);
+			fail("registra cliente con nombre de usuario admin");
+		} catch (UsuarioYaExisteException e) {
+			//esta ok
+			assertEquals(0,Empresa.getInstance().getClientes().size());
 		}
 	}
 	

@@ -19,11 +19,7 @@ public class Login_no_vacio {
 	
 	@Before
 	public void setUp() throws Exception {
-		try {
-			Empresa.getInstance().agregarCliente(this.nombre_usuario,this.password,this.nombre_completo);
-		} catch (UsuarioYaExisteException e) {
-			//e.printStackTrace();
-		}
+		Empresa.getInstance().agregarCliente(this.nombre_usuario,this.password,this.nombre_completo);
 	}
 
 	@Test
@@ -36,7 +32,6 @@ public class Login_no_vacio {
 			assertNotNull(Empresa.getInstance().getUsuarioLogeado());
 		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
 			fail("no logea correctamente al usuario");
-			//e.printStackTrace();
 		}
 	}
 	
@@ -51,20 +46,20 @@ public class Login_no_vacio {
 			assertTrue(Empresa.getInstance().isAdmin());
 		} catch (UsuarioNoExisteException | PasswordErroneaException e) {
 			fail("no logea correctamente al usuario");
-			//e.printStackTrace();
 		}
 	}
 	
 	@Test
 	public void login_password_incorrecta() {
+		String pass_ingresada = "z";
 		try {
-			Empresa.getInstance().login(this.nombre_usuario,"z");
+			Empresa.getInstance().login(this.nombre_usuario,pass_ingresada);
 			fail("se logea con la password incorrecta");
 		} catch (UsuarioNoExisteException e) {
 			fail("usuario incorrecto cuando en realidad esta mal la password");
 		} catch(PasswordErroneaException e) {
 			//esta ok
-			//e.printStackTrace();
+			assertNull(Empresa.getInstance().getUsuarioLogeado());
 		}
 	}
 
@@ -75,7 +70,8 @@ public class Login_no_vacio {
 			fail("logea con un nombre de usuario inexistente");
 		} catch (UsuarioNoExisteException e) {
 			//esta ok
-			//e.printStackTrace();
+			assertEquals("no conciden el nombre de usuario de la exception con el ingresado","b",e.getUsuarioPretendido());
+			assertTrue(e.getMessage().contains("no registrado"));
 		} catch(PasswordErroneaException e) {
 			fail("password erronea cuando en realidad esta mal el nombre de usuario");
 		}

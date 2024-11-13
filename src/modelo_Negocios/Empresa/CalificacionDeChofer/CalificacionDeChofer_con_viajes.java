@@ -68,7 +68,7 @@ public class CalificacionDeChofer_con_viajes {
 	public void test_calificacion_tres_viajes() {
 		try {
 			double promedio_calificacion = Empresa.getInstance().calificacionDeChofer(this.chofer_tres_viajes);
-			assertEquals(promedio_calificacion,3.0,0.1);
+			assertEquals(3.0,promedio_calificacion,0.1);
 		} catch (SinViajesException e) {
 			fail("dice que no tiene viajes");
 		}
@@ -100,6 +100,7 @@ public class CalificacionDeChofer_con_viajes {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 		Empresa.getInstance().getViajesIniciados().clear();
 	}
 }

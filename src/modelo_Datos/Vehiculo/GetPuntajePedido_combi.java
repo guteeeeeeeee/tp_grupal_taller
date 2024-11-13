@@ -72,6 +72,7 @@ public class GetPuntajePedido_combi {
 
 	@After
 	public void limpio() {
+		Empresa.getInstance().logout();
 		Empresa.getInstance().getClientes().clear();
 	}
 

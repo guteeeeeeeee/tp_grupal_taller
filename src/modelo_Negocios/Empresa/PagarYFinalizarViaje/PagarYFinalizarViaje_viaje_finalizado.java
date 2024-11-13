@@ -43,7 +43,7 @@ public class PagarYFinalizarViaje_viaje_finalizado {
 	
 	@Test
 	public void test_finalizar_viaje_ya_finalizado() {
-		int calificacion = 0;
+		int calificacion = 3;
 		try {				
 			Empresa.getInstance().pagarYFinalizarViaje(calificacion);
 			fail("no debe continuar, el viaje ya fue finalizado antes");

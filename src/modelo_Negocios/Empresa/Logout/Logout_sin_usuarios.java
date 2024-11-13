@@ -5,19 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import modeloNegocio.Empresa;
 
 public class Logout_sin_usuarios {
 
-	@Test
-	public void test_logout_sin_clientes_registrados() {
-		assertNull(Empresa.getInstance().getUsuarioLogeado());
+	@Before
+	public void setUp() throws Exception {
 		Empresa.getInstance().logout();
 	}
 	
-	@After
-	public void limpio() {
-		Empresa.getInstance().getClientes().clear();
+	@Test
+	public void test_logout_sin_clientes_registrados() {
+		assertNull(Empresa.getInstance().getUsuarioLogeado());
 	}
 }

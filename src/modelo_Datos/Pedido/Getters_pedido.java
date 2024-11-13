@@ -2,6 +2,7 @@ package modelo_Datos.Pedido;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +30,11 @@ public class Getters_pedido {
 		assertEquals(Constantes.ZONA_PELIGROSA,this.pedido.getZona());
 		assertTrue(this.pedido.isMascota());
 		assertTrue(this.pedido.isBaul());
+	}
+	
+	@After
+	public void limpiar() {
+		Empresa.getInstance().getClientes().clear();
 	}
 
 }

@@ -62,6 +62,7 @@ Cliente user_logeado;
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 	}
 
 }

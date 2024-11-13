@@ -51,6 +51,7 @@ public class ValidarPedido_moto {
 			Empresa.getInstance().getClientes().clear();
 			Empresa.getInstance().getPedidos().clear();
 			Empresa.getInstance().getVehiculos().clear();
+			Empresa.getInstance().getVehiculosDesocupados().clear();
 		}
 
 }

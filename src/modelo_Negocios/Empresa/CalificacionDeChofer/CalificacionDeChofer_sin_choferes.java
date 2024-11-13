@@ -36,6 +36,7 @@ public class CalificacionDeChofer_sin_choferes {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 		Empresa.getInstance().getViajesIniciados().clear();
 	}
 }

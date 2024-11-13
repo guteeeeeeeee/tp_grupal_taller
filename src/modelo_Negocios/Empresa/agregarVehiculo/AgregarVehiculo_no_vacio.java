@@ -45,12 +45,14 @@ public class AgregarVehiculo_no_vacio {
 			fail("tendria que tirar la excepcion que el vehiculo esta repetido");
 		} catch (VehiculoRepetidoException e) {
 			//esta ok
+			assertEquals(1,Empresa.getInstance().getVehiculos().size());
 		}
 	}
 	
 	@After
 	public void limpiar() {
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getVehiculosDesocupados().clear();
 	}
 
 }

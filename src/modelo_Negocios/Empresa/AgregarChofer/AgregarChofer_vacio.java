@@ -38,5 +38,6 @@ public class AgregarChofer_vacio {
 	@After
 	public void limpio() {
 		Empresa.getInstance().getChoferes().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
 	}
 }

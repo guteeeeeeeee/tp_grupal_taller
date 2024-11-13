@@ -36,6 +36,7 @@ public class CrearViaje_con_todo {
 	Vehiculo vehiculo3;
 	Chofer chofer1;
 	Chofer chofer2;
+	Pedido pedido1;
 	
 	@Before
 	public void setUp() throws Exception {		
@@ -56,83 +57,54 @@ public class CrearViaje_con_todo {
 		this.chofer2 = new ChoferTemporario("111","raul");
 		Empresa.getInstance().agregarChofer(this.chofer2);
 				
-		crea_viaje_anterior(this.user2);
+		this.pedido1 = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().agregarPedido(pedido1);
+		
+		Pedido pedido2 = new Pedido(this.user2,4,false,false,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().agregarPedido(pedido2);
+		Empresa.getInstance().crearViaje(pedido2, chofer2, vehiculo2);
 	}
 
 	@Test
 	public void test_creo_viaje() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
-		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		try {
 			assertEquals(2,Empresa.getInstance().getVehiculosDesocupados().size());
 			assertEquals(1,Empresa.getInstance().getChoferesDesocupados().size());
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo1);
+			Empresa.getInstance().crearViaje(this.pedido1, this.chofer1, this.vehiculo1);
 			assertNotNull(Empresa.getInstance().getViajeDeCliente(this.user1));
 			assertEquals(1,Empresa.getInstance().getVehiculosDesocupados().size());
 			assertEquals(0,Empresa.getInstance().getChoferesDesocupados().size());
 			assertEquals(this.chofer1,Empresa.getInstance().getViajesIniciados().get(this.user1).getChofer());
 			assertEquals(this.vehiculo1,Empresa.getInstance().getViajesIniciados().get(this.user1).getVehiculo());
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no esta en el hashmap de pedidos");
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta realizando un viaje");
+		} catch (PedidoInexistenteException | ChoferNoDisponibleException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("tira exception cuando no debe");
 		}
 	}
 	
 	@Test
-	public void test_creo_viaje_pedido_inexistente() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
-		Pedido pedido2 = new Pedido(this.user1,5,false,false,10,Constantes.ZONA_STANDARD);
+	public void test_creo_viaje_pedido_inexistente() throws SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConViajePendienteException, ClienteConPedidoPendienteException {
+		Pedido pedido_no_agregado = new Pedido(this.user1,5,false,false,10,Constantes.ZONA_STANDARD);
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido2, this.chofer1, this.vehiculo1);
-			fail("no tendria que haber creado el viaje ya que el pedido no existe");
+			assertNull(Empresa.getInstance().getViajeDeCliente(this.user1));
+			Empresa.getInstance().crearViaje(pedido_no_agregado, this.chofer1, this.vehiculo1);
+			fail("crea viaje con un pedido que no fue agregado");
+		} catch (ChoferNoDisponibleException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception incorrecta");
 		} catch (PedidoInexistenteException e) {
-			//esta ok
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta realizando un viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(this.user1));
 		}
 	}
 	
 	@Test
-	public void test_creo_viaje_cliente_viaje_pendiente() {
-		Pedido pedido = new Pedido(this.user2,4,true,true,5,Constantes.ZONA_STANDARD);
+	public void test_creo_viaje_cliente_viaje_pendiente() throws SinVehiculoParaPedidoException, ClienteNoExisteException, ClienteConViajePendienteException, ClienteConPedidoPendienteException {
+		Pedido pedido_nuevo = new Pedido(this.user2,4,true,true,5,Constantes.ZONA_STANDARD);
+		Empresa.getInstance().getPedidos().clear();
+		Empresa.getInstance().agregarPedido(pedido_nuevo);
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Viaje viaje_iniciado_user2 = Empresa.getInstance().getViajesIniciados().get(this.user2);
-			assertEquals(this.chofer2,viaje_iniciado_user2.getChofer());
-			assertEquals(this.vehiculo2,viaje_iniciado_user2.getVehiculo());
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo1);
+			assertNotNull(Empresa.getInstance().getViajeDeCliente(this.user2));
+			Empresa.getInstance().crearViaje(pedido_nuevo, this.chofer1, this.vehiculo1);
 			fail("no tendria que haber creado el viaje, el usuario esta en viaje");
 		} catch (PedidoInexistenteException e) {
 			fail("el pedido no existe");
@@ -149,155 +121,76 @@ public class CrearViaje_con_todo {
 	
 	@Test
 	public void test_creo_viaje_chofer_no_disponible() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
-		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		try {
 			Viaje viaje_iniciado_user2 = Empresa.getInstance().getViajesIniciados().get(this.user2);
 			assertEquals(this.chofer2,viaje_iniciado_user2.getChofer());
-			Empresa.getInstance().crearViaje(pedido, this.chofer2, this.vehiculo1);
+			Empresa.getInstance().crearViaje(this.pedido1, this.chofer2, this.vehiculo1);
 			fail("no tendria que haber creado el viaje, el chofer esta en viaje");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no existe");
+		} catch (PedidoInexistenteException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
 		} catch (ChoferNoDisponibleException e) {
 			//esta ok
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta en viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
 	@Test
 	public void test_creo_viaje_chofer_no_registrado() {
 		Chofer chofer_no_registrado = new ChoferTemporario("333","jorge");
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido, chofer_no_registrado, this.vehiculo1);
+			Empresa.getInstance().crearViaje(this.pedido1, chofer_no_registrado, this.vehiculo1);
 			fail("no tendria que haber creado el viaje, el chofer no esta registrado");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no existe");
+		} catch (PedidoInexistenteException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
 		} catch (ChoferNoDisponibleException e) {
 			//esta ok
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta en viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
 	@Test
 	public void test_creo_viaje_vehiculo_no_disponible() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
+		Viaje viaje_iniciado_user2 = Empresa.getInstance().getViajesIniciados().get(this.user2);
+		assertEquals(this.vehiculo2,viaje_iniciado_user2.getVehiculo());
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Viaje viaje_iniciado_user2 = Empresa.getInstance().getViajesIniciados().get(this.user2);
-			assertEquals(this.vehiculo2,viaje_iniciado_user2.getVehiculo());
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo2);
+			Empresa.getInstance().crearViaje(this.pedido1, this.chofer1, this.vehiculo2);
 			fail("no tendria que haber creado el viaje, el vehiculo no esta registrado");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no existe");
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
+		} catch (PedidoInexistenteException | ChoferNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
 		} catch (VehiculoNoDisponibleException e) {
 			//esta ok
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta en viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
 	@Test
 	public void test_creo_viaje_vehiculo_no_valido() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo3);
+			Empresa.getInstance().crearViaje(pedido1, this.chofer1, this.vehiculo3);
 			fail("no tendria que haber creado el viaje, el vehiculo no es valido");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no existe");
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo esta en viaje");
+		} catch (PedidoInexistenteException | ChoferNoDisponibleException | VehiculoNoDisponibleException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
 		} catch (VehiculoNoValidoException e) {
 			//esta ok
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta en viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
 	@Test
 	public void test_creo_viaje_vehiculo_no_registrado() {
 		Vehiculo vehiculo_no_registrado = new Auto("zzz",4,true);
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
-			Empresa.getInstance().agregarPedido(pedido);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, vehiculo_no_registrado);
+			Empresa.getInstance().crearViaje(this.pedido1, this.chofer1, vehiculo_no_registrado);
 			fail("no tendria que haber creado el viaje, el vehiculo no esta registrado");
-		} catch (PedidoInexistenteException e) {
-			fail("el pedido no existe");
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
+		} catch (PedidoInexistenteException | ChoferNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
 		} catch (VehiculoNoDisponibleException e) {
 			//esta ok
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no es valido");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta en viaje");
-		}
-	}
-	
-	public void crea_viaje_anterior(Cliente cliente) {
-		Pedido pedido_test = new Pedido(cliente,4,false,false,5,Constantes.ZONA_STANDARD);
-		try {
-			Empresa.getInstance().agregarPedido(pedido_test);
-		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
-				| ClienteConPedidoPendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Empresa.getInstance().crearViaje(pedido_test, chofer2, vehiculo2);
-		} catch (PedidoInexistenteException | ChoferNoDisponibleException | VehiculoNoDisponibleException
-				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
@@ -306,6 +199,7 @@ public class CrearViaje_con_todo {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getViajesIniciados().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculosDesocupados().clear();
 		Empresa.getInstance().getChoferesDesocupados().clear();

@@ -56,12 +56,55 @@ public class AgregarPedido_cliente_en_viaje {
 	}
 	
 	@Test
+	public void test_agregar_pedido_cliente_que_no_esta_en_viaje() {
+		int cant_pasajeros = 3;
+		boolean mascota = true;
+		boolean baul = true;
+		int cant_km = 10;
+		String zona = Constantes.ZONA_STANDARD;
+		Pedido pedido_nuevo = new Pedido(this.user1,cant_pasajeros,mascota,baul,cant_km,zona);
+		try {
+			assertEquals(0,Empresa.getInstance().getPedidos().size());
+			Empresa.getInstance().agregarPedido(pedido_nuevo);
+			assertEquals(1,Empresa.getInstance().getPedidos().size());
+			assertEquals(this.user1,Empresa.getInstance().getPedidos().get(this.user1).getCliente());
+			assertEquals(cant_pasajeros,Empresa.getInstance().getPedidos().get(this.user1).getCantidadPasajeros());
+			assertEquals(cant_km,Empresa.getInstance().getPedidos().get(this.user1).getKm());
+			assertEquals(zona,Empresa.getInstance().getPedidos().get(this.user1).getZona());
+		} catch (SinVehiculoParaPedidoException | ClienteNoExisteException | ClienteConViajePendienteException
+				| ClienteConPedidoPendienteException e) {
+			fail("tira excepcion cuando no debe");
+		}
+	}
+	
+	@Test
+	public void test_agregar_pedido_no_vehiculo_satisface_en_viaje() {
+		int cant_pasajeros = 7;
+		boolean mascota = true;
+		boolean baul = true;
+		int cant_km = 10;
+		String zona = Constantes.ZONA_STANDARD;
+		Pedido pedido_nuevo = new Pedido(this.user1,cant_pasajeros,mascota,baul,cant_km,zona);
+		try {
+			assertEquals(0,Empresa.getInstance().getPedidos().size());
+			Empresa.getInstance().agregarPedido(pedido_nuevo);
+			fail("debe tirar excepcion de que no hay vehiculos disponibles para el pedido");
+		}catch (SinVehiculoParaPedidoException e) {
+			//esta ok
+			assertEquals(0,Empresa.getInstance().getPedidos().size());
+		}catch (ClienteNoExisteException | ClienteConViajePendienteException
+				| ClienteConPedidoPendienteException e) {
+			fail("tira la excepcion incorrecta");
+		}
+	}
+	
+	@Test
 	public void test_agregar_pedido_cliente_en_viaje() {
 		int cant_pasajeros = 3;
 		boolean mascota = true;
 		boolean baul = true;
 		int cant_km = 10;
-		String zona = "ZONA_STANDARD";
+		String zona = Constantes.ZONA_STANDARD;
 		Pedido pedido_nuevo = new Pedido(this.user2,cant_pasajeros,mascota,baul,cant_km,zona);
 		try {
 			assertEquals(0,Empresa.getInstance().getPedidos().size());
@@ -84,6 +127,8 @@ public class AgregarPedido_cliente_en_viaje {
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getChoferesDesocupados().clear();
+		Empresa.getInstance().getViajesIniciados().clear();
 	}
 
 }

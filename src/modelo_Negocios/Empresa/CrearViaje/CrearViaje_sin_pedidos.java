@@ -14,8 +14,6 @@ import excepciones.PedidoInexistenteException;
 import excepciones.SinVehiculoParaPedidoException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
-import modeloDatos.Auto;
-import modeloDatos.Moto;
 import modeloNegocio.Empresa;
 import util.Constantes;
 import modeloDatos.*;
@@ -29,6 +27,7 @@ public class CrearViaje_sin_pedidos {
 	Vehiculo vehiculo3;
 	Chofer chofer1;
 	Chofer chofer2;
+	Pedido pedido1;
 	
 	@Before
 	public void setUp() throws Exception {		
@@ -48,24 +47,21 @@ public class CrearViaje_sin_pedidos {
 		Empresa.getInstance().agregarChofer(this.chofer1);
 		this.chofer2 = new ChoferTemporario("111","raul");
 		Empresa.getInstance().agregarChofer(this.chofer2);
+				
+		this.pedido1 = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 	}
 
 	@Test
 	public void test_creo_viaje_sin_pedidos() {
-		Pedido pedido = new Pedido(this.user1,4,true,true,5,Constantes.ZONA_STANDARD);
 		try {
-			Empresa.getInstance().crearViaje(pedido, this.chofer1, this.vehiculo1);
-			fail("no tiene que crear el viaje, el hashmap de pedidos esta vacio");
-		} catch (PedidoInexistenteException e) {
+			Empresa.getInstance().crearViaje(this.pedido1, this.chofer1, this.vehiculo1);
+			fail("crea viaje cuando no tiene ningun pedido registrado");
+		} catch (ChoferNoDisponibleException | VehiculoNoDisponibleException
+				| VehiculoNoValidoException | ClienteConViajePendienteException e) {
+			fail("exception equivocada");
+		} catch (PedidoInexistenteException e) { 
 			//esta ok
-		} catch (ChoferNoDisponibleException e) {
-			fail("el chofer no esta disponible");
-		} catch (VehiculoNoDisponibleException e) {
-			fail("el vehiculo no esta disponible");
-		} catch (VehiculoNoValidoException e) {
-			fail("el vehiculo no esta en el hashmap de vehiculos");
-		} catch (ClienteConViajePendienteException e) {
-			fail("el cliente esta realizando un viaje");
+			assertNull(Empresa.getInstance().getViajeDeCliente(user1));
 		}
 	}
 	
@@ -74,6 +70,7 @@ public class CrearViaje_sin_pedidos {
 		Empresa.getInstance().getClientes().clear();
 		Empresa.getInstance().getChoferes().clear();
 		Empresa.getInstance().getVehiculos().clear();
+		Empresa.getInstance().getViajesIniciados().clear();
 		Empresa.getInstance().getPedidos().clear();
 		Empresa.getInstance().getVehiculosDesocupados().clear();
 		Empresa.getInstance().getChoferesDesocupados().clear();
